@@ -12,9 +12,9 @@
 
 ### ✨ Demo
 
-![](https://chaitin.github.io/xray/assets/term.svg)
+![](https://docs.xray.cool/assets/term.svg)
 
-🏠[使用文档](https://xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
+🏠[使用文档](https://docs.xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases)
 
 注意：xray 不开源，直接下载构建的二进制文件即可，仓库内主要为社区贡献的 poc，每次 xray 发布将自动打包。
 
@@ -61,9 +61,9 @@
     --text-output result.txt --json-output result.json --html-output report.html
     ```
     
-    [报告样例](https://chaitin.github.io/xray/assets/report_example.html)
+    [报告样例](https://docs.xray.cool/assets/report_example.html)
 
-其他用法请阅读文档： https://chaitin.github.io/xray/#/
+其他用法请阅读文档： https://docs.xray.cool
 
 
 ## 🛠 检测模块
@@ -96,7 +96,7 @@
 
  - poc 管理 (key: phantasm)
 
-   默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行。文档：https://chaitin.github.io/xray/#/guide/poc
+   默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行。文档：https://docs.xray.cool/#/guide/poc
 
  - 文件上传检测 (key: upload)
 
@@ -139,7 +139,7 @@
 
 ## ⚡️ 进阶使用
 
-下列高级用法请查看 [https://chaitin.github.io/xray/](https://chaitin.github.io/xray/) 使用。
+下列高级用法请查看 https://docs.xray.cool/ 使用。
 
  - 修改配置文件
  - 抓取 https 流量
@@ -149,11 +149,11 @@
 
 ## 😘 贡献 POC
 
-参照: [https://chaitin.github.io/xray/#/guide/contribute](https://chaitin.github.io/xray/#/guide/contribute)
+参照: https://docs.xray.cool/#/guide/contribute
 
 ## 📝 讨论区
 
-提交误报漏报需求等等请务必先阅读 [https://chaitin.github.io/xray/#/guide/feedback](https://chaitin.github.io/xray/#/guide/feedback)
+提交误报漏报需求等等请务必先阅读 https://docs.xray.cool/#/guide/feedback
 
 如有问题可以在 GitHub 提 issue, 也可在下方的讨论组里
 
@@ -161,6 +161,4 @@
 1. QQ 群: 717365081
 1. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
 
-<img src="https://chaitin.github.io/xray/assets/wechat.jpg?_=1" height="200px">
-
-
+<img src="https://docs.xray.cool/assets/wechat.jpg?nocache=_" height="200px">
