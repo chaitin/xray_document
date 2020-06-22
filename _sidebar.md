@@ -26,8 +26,8 @@
   - [使用反连平台挖掘和验证 SSRF](scenario/reverse_server_ssrf.md)
   - [对接微信/企业微信实现自动告警](scenario/xray_vuln_alert.md)
 
-- API
-  - [说明](api/api.md)
+- webhook
+  - [说明](webhook/webhook.md)
 - [技术分享](share/share.md)
 - [贡献POC](guide/contribute.md)
 - [奖励措施](guide/rewards.md)
