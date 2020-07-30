@@ -18,7 +18,7 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 ```javascript
 {
     "yaml.schemas": {
-        "https://chaitin.github.io/xray/assets/poc/yaml-poc-schema.json": "poc-yaml-*.yml"
+        "https://docs.xray.cool/assets/poc/yaml-poc-schema.json": "poc-yaml-*.yml"
     }
 }
 ```
