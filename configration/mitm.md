@@ -2,64 +2,42 @@
 
 ```yaml
 mitm:
-  ca_cert: ./ca.crt # ca 根证书
-  ca_key: ./ca.key # ca 根秘钥
-  auth:
+  ca_cert: ./ca.crt                     # CA 根证书路径
+  ca_key: ./ca.key                      # CA 私钥路径
+  basic_auth:                           # 基础认证的用户名密码
     username: ""
     password: ""
-  restriction:
-    includes: # 允许扫描的域
-    - '*' # 表示允许所有的域名和 path
-    - "example.com/admin*" # 表示允许 example.com 下的 /admin 开头的 path
-    excludes:
+  allow_ip_range: []                    # 允许的 ip，可以是 ip 或者 cidr 字符串
+  restriction:                          # 代理能够访问的资源限制, 以下各项为空表示不限制
+    hostname_allowed: []                # 允许访问的 Hostname，支持格式如 t.com、*.t.com、1.1.1.1、1.1.1.1/24、1.1-4.1.1-8
+    hostname_disallowed:                # 不允许访问的 Hostname，支持格式如 t.com、*.t.com、1.1.1.1、1.1.1.1/24、1.1-4.1.1-8
     - '*google*'
     - '*github*'
     - '*.gov.cn'
-    - '*.edu.cn'
+    - '*chaitin*'
+    - '*.xray.cool'
+    port_allowed: []                    # 允许访问的端口, 支持的格式如: 80、80-85
+    port_disallowed: []                 # 不允许访问的端口, 支持的格式如: 80、80-85
+    path_allowed: []                    # 允许访问的路径，支持的格式如: test、*test*
+    path_disallowed: []                 # 不允许访问的路径, 支持的格式如: test、*test*
+    query_key_allowed: []               # 允许访问的 Query Key，支持的格式如: test、*test*
+    query_key_disallowed: []            # 不允许访问的 Query Key, 支持的格式如: test、*test*
+    fragment_allowed: []                # 允许访问的 Fragment, 支持的格式如: test、*test*
+    fragment_disallowed: []             # 不允许访问的 Fragment, 支持的格式如: test、*test*
+    post_key_allowed: []                # 允许访问的 Post Body 中的参数, 支持的格式如: test、*test*
+    post_key_disallowed: []             # 不允许访问的 Post Body 中的参数, 支持的格式如: test、*test*
   queue:
-    max_length: 10000
+    max_length: 3000                    # 队列长度限制, 也可以理解为最大允许多少等待扫描的请求, 请根据内存大小自行调整
   proxy_header:
-    via: "" # 如果不为空，proxy 将添加类似 Via: 1.1 $some-value-$random 的 http 头
-    x_forwarded: false # 是否添加 X-Forwarded-{For,Host,Proto,Url} 四个 http 头
-  upstream_proxy: "" # mitm 的全部流量继续使用 proxy
+    via: ""                             # 是否为代理自动添加 Via 头
+    x_forwarded: false                  # 是否为代理自动添加 X-Forwarded-{For,Host,Proto,Url} 四个 http 头
+  upstream_proxy: ""                    # 为 mitm 本身配置独立的代理
 ```
-
-## 抓取 HTTPS 流量
-对应于 `ca_cert` 和 `ca_key` 两项配置。
-
-和 burp 类似，抓取 https 流量需要信任一个根证书，这个根证书可以自行生成，也可用下列自带的命令生成:
-
-```
-xray genca
-```
-
-运行后将在当前目录生成 `ca.key` 和 `ca.crt`， 用户需要手动信任 `ca.crt`并按需调整配置中的文件位置，操作完成后就可以正常抓取 https 流量了。
-
-> Firefox 浏览器没有使用系统的根证书管理器，意味着使用 Firefox 时需要单独在该浏览内导入证书才可生效。
-> 对于移动端等，可以在挂代理之后访问 `http://xray/` 然后下载根证书。
 
 ## 代理启用密码保护
 对应于 `auth` 中的配置。
 
 xray 支持给代理配置基础认证的密码，当设置好 `auth` 中的 `username` 和 `password` 后，使用代理时浏览器会弹框要求输出用户名密码，输入成功后代理才可正常使用。
-
-## 限制漏洞扫描的范围
-
-在 mitm 的配置中的 `restrction` 项指示本次漏洞的 URI 限制。
-
-1. `includes`表示只扫描哪些域和路径。比如 `*.example.com` 只扫描 `example.com` 的子域
-1. `excludes` 表示不扫描哪些域和路径。比如 `t.example.com` 表示不扫描 `t.example.com`
-
-两个都配置的情况下会取交集，这两个配置常用于想要过滤代理中的某些域，或者只想扫描某个域的请求时。
-
-两项配置都支持 path 过滤，如果输入的中有 `/`, 那么 `/` 后面的表达式就是 path 的过滤。可以对照如下例子理解:
-```yaml
-includes:
-  - 'example.com/test' # 表示允许 example.com/test 这一个路径
-  - "example.com/admin*" # 表示允许 example.com 下的 /admin 开头的所有 path 
-```
-
-!> 注意： 这里的 includes 和 excludes 均不支持端口号，如果加上将导致限制失效！
 
 ## 限制允许使用该代理的 IP
 

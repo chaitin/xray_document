@@ -2,29 +2,31 @@
 
 ```yaml
 http:
-  proxy: "" # 漏洞扫描时使用的代理，如需设置多个代理，请见文档相关说明
-  dial_timeout: 5 # 建立 tcp 连接的超时时间
-  read_timeout: 10 # 读取 http 响应的超时时间，不可太小，否则会影响到 sql 时间盲注的判断
-  fail_retries: 1 # 请求失败的重试次数，0 则不重试
-  max_redirect: 5 # 单个请求最大允许的跳转数
-  max_qps: 500 # 每秒最大请求数
-  max_conns_per_host: 80 # 同一 host 最大允许的连接数，可以根据目标主机性能适当增大。
-  max_resp_body_size: 8388608 # 8M，单个请求最大允许的响应体大小，超过该值 body 就会被截断
-  headers: # 每个请求预置的 http 头
-    User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0
+  proxy: ""                             # 漏洞扫描时使用的代理，如: http://127.0.0.1:8080。 如需设置多个代理，请使用 proxy_rule 或自行创建上层代理
+  proxy_rule: []                        # 漏洞扫描使用多个代理的配置规则, 具体请参照文档
+  dial_timeout: 5                       # 建立 tcp 连接的超时时间
+  read_timeout: 10                      # 读取 http 响应的超时时间，不可太小，否则会影响到 sql 时间盲注的判断
+  max_conns_per_host: 50                # 同一 host 最大允许的连接数，可以根据目标主机性能适当增大
+  enable_http2: false                   # 是否启用 http2, 开启可以提升部分网站的速度，但目前不稳定有崩溃的风险
+  fail_retries: 0                       # 请求失败的重试次数，0 则不重试
+  max_redirect: 5                       # 单个请求最大允许的跳转数
+  max_resp_body_size: 2097152           # 最大允许的响应大小, 默认 2M
+  max_qps: 500                          # 每秒最大请求数
+  allow_methods:                        # 允许的请求方法
+  - HEAD
+  - GET
+  - POST
+  - PUT
+  - PATCH
+  - DELETE
+  - OPTIONS
+  - CONNECT
+  - TRACE
+  - MOVE
+  - PROPFIND
+  headers:
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0
     # Cookie: key=value
-  allow_methods: # 允许使用 http 方法
-    - HEAD
-    - GET
-    - POST
-    - PUT
-    - DELETE
-    - OPTIONS
-    - CONNECT
-    - PROPFIND
-    - MOVE
-  tls_skip_verify: true # 是否验证目标网站的 https 证书。
-  enable_http2: false # 是否启用 http2
 ```
 
 ## 漏洞扫描用的代理 `proxy`

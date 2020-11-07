@@ -116,14 +116,14 @@ sudo update-ca-certificates
 
 第一次启动 xray 之后，当前目录会生成 `config.yml` 文件，选择文件编辑器打开，并按照下方说明修改。
 
- - `mitm` 中 `restriction` 中 `includes` 由 `*` 改为 `testphp.vulnweb.com`
+ - `mitm` 中 `restriction` 中 `hostname_allowed` 增加 `testphp.vulnweb.com`
 
 ```
 mitm:
   ...
-  restriction:
-    includes:
-    - "testphp.vulnweb.com"
+  restriction:                          
+    hostname_allowed:                   # 允许访问的 Hostname，支持格式如 t.com、*.t.com、1.1.1.1、1.1.1.1/24、1.1-4.1.1-8
+    - testphp.vulnweb.com
 ```
 
 因为我们的测试目标站就是 `http://testphp.vulnweb.com`，增加这个过滤之后，xray 将只会扫描该站的流量，避免扫描到非授权目标站点。
@@ -131,6 +131,8 @@ mitm:
 对于配置文件中的更多解读，请参考文档中的 `配置` 章节。
 
  - 设定漏洞扫描结果的输出，这里选择使用 html 文件输出，所以命令行后面要增加 `--html-output xray-testphp.html`。
+
+ !> xray 配置文件中默认不允许扫描 gov 和 edu 等网站，如果想对这些网站进行**授权测试**，需要移除 `hostname_disallowed` 的相关配置才可以。严禁未授权的测试！否则后果自负。
 
 <!-- tabs:start -->
 
