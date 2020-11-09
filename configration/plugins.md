@@ -64,7 +64,7 @@ plugins:
     enabled: true
     exclude_poc:
     - /home/poc/poc-fake-good-poc
-    include_poc:
+    local_poc:
     - /home/poc/*good-poc*
 ```
 
