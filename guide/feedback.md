@@ -34,6 +34,6 @@ Compiler Version: go version go1.12.1 darwin/amd64
 
 1. GitHub issue: https://github.com/chaitin/xray/issues
 1. QQ 群: 717365081
-1. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
+1. 微信群: 扫描二维码关注 xray 官方公众号，点击菜单中的加群，添加运营的微信后，会把大家拉到 `xray` 官方微信群    
 
 ![](../assets/wechat.jpg")
