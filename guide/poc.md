@@ -37,12 +37,6 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 
 ![](../assets/poc/poc-jetbrains.jpg)
 
-### 在线编写(不推荐，功能不全)
-
-https://phith0n.github.io/xray-poc-generation/
-
-编写后点击生成然后复制到本地测试即可
-
 ## POC 结构
 
 一个最基础的 POC 如下：
@@ -84,7 +78,7 @@ detail 是一个键值对，内部存储需要返回给 xray 引擎的内容，�
 
 在一个 yaml poc 从文件加载到 go 的某个结构后，会首先对表达式进行预编译和静态类型检查，这一过程主要作用于 yaml 中的 set 和 expression 部分，这两部分是 yaml poc 的关键，主要用到了 CEL 表达式（下面会详细说到)。
 
-在检查完成后，内存中的 poc 就处于等待调度的状态了。当有需要处理时。会执行类似如下的伪代码:
+在检查完成后，内存中的 poc 就处于等待调度的状态了。每当有**新的请求**来临时，会执行类似如下的伪代码:
 
 ```
 for rule in rules:
@@ -97,7 +91,16 @@ for rule in rules:
 简单来讲就是将请求根据 rule 中的规则对请求变形，然后获取变形后的响应，再检查响应是否匹配 `expression` 部分的表达式。如果匹配，就进行下一个 rule，如果不匹配则退出执行。
 如果成功执行完了最后一个 rule，那么代表目标有漏洞，将 detail 中的信息附加到漏洞输出后就完成了单个 poc 的整个流程。
 
+目前版本的实现对**新的请求**定义为: **新的目录**, 比如下面几个 url 依次进入检查队列时，执行情况如下：
 
+```
+http://exmaple.com/     会执行, 上下文为 / 
+http://example.com/a    不会再次执行，因为上下文同样为 /
+http://example.com/a/b  会执行，上下文为 /a/
+http://example.com/a/c/ 不会执行, 超过深度限制 (depth)
+```
+
+其中 `depth` 是 phantasm 插件的一个配置项，用于指定检测深度，可以参考： [插件配置](/configration/plugins?id=dirscan)
 
 ## Rule
 
@@ -244,7 +247,34 @@ rules:
 
 更多复杂用法大家可以自行发挥。
 
-## 如何编写借助反连平台的POC
+## 规则组
+
+!> 该功能从 xray 1.6.0 开始支持
+
+有一部分漏洞存在多种入口或是多种触发条件，如果想要将支持多种情况，从已知的情报来看只能写多个 yaml poc。但是从分类上来讲，这几个分离的 poc 实际都是为了检测同一个漏洞，因此诞生了 `groups` 规则组的概念。
+
+最常见的一个应用是同一漏洞在 windows 和 linux 下不同的利用方式, 这时候就可以这么写:
+
+```yaml
+name: poc-yaml-groups-test
+groups:
+  win:
+    - method: GET
+      path: "/getfile=../../../../windows/win.ini"
+      expression: |
+        response.status == 200
+  linux:
+    - method: GET
+      path: "/getfile=../../../../etc/passwd"
+      expression: |
+        response.status == 200
+```
+
+`groups` 的定义是 map[string]rules，这里执行逻辑上相当于 `win | linux`, 即只要有一组规则执行成功，该漏洞就认为存在。
+
+注意：`groups` 与 `rules` 应当只存在一个。
+
+## 借助反连平台的POC
 
 反连平台是测试一些无回显漏洞的方法，如SSRF、命令执行等，下面介绍一下在编写POC的时候，如何借助反连平台来探测漏洞。
 
@@ -290,7 +320,7 @@ rules:
 
 此时我们使用`{{reverseDomain}}`和`{{reverseIP}}`变量，前者会被替换成反连平台的域名，后者替换成反连平台IP，此时nslookup会向`{{reverseIP}}`发送一个包含`{{reverseDomain}}`的DNS请求，此时反连平台即将收到消息，并成功记录下漏洞。
 
-## 一些细节上的说明
+## 转义说明
 
 在编写expression表达式的时候，尤其要注意一个问题：yaml字符串的转义，与CEL表达式字符串里的转义。
 
@@ -431,3 +461,4 @@ reverse 包含字段如下。（需要先使用 newReverse() 生成实例，假�
 `urlencode` | `func urlencode(string/bytes) string` | 将字符串或 bytes 进行 urlencode 编码
 `urldecode` | `func urldecode(string/bytes) string` | 将字符串或 bytes 进行 urldecode 解码
 `substr` | `func substr(string, start, length) string` | 截取字符串
+`sleep` |  `func sleep(int) bool` | 暂停执行等待指定的秒数
