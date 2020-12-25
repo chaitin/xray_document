@@ -43,8 +43,8 @@
   By default, all built-in plugins are enabled, and the following commands can be used to enable specific plugins for this scan.
    
    ```bash
-   xray webscan --plugins cmd_injection,sqldet --url http://example.com
-   xray webscan --plugins cmd_injection,sqldet --listen 127.0.0.1:7777
+   xray webscan --plugins cmd-injection,sqldet --url http://example.com
+   xray webscan --plugins cmd-injection,sqldet --listen 127.0.0.1:7777
    ```
       
 1. Specify plugin output path
@@ -68,7 +68,7 @@ We are working hard for new detection modules
 
    Support error based, boolean based and time based sql injection detection
 
- - cmd_injection
+ - cmd-injection
 
    Detect common shell command injection, PHP code execution and template injection, etc
 
@@ -76,7 +76,7 @@ We are working hard for new detection modules
 
    Support about ten kinds of sensitive path and file type, including backup file, temp file, debug page, config file, etc
 
- - path_traversal
+ - path-traversal
 
    Support command platform and encoding
 
@@ -92,7 +92,7 @@ We are working hard for new detection modules
 
    Support common backend languages
 
- - brute_force
+ - brute-force
 
    The community version can detect weak password in http basic auth and simple form, common username and password dict inside
 
@@ -112,7 +112,7 @@ We are working hard for new detection modules
 
    Detect arbitrary redirection from HTML meta and 30x response, etc
 
- - crlf_injection
+ - crlf-injection
 
    Detect CRLF injection in HTTP header, support parameters from query and body, etc
 

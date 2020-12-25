@@ -211,7 +211,7 @@ a=b&x=y
 ```
 ./xray_darwin_amd64 webscan --plugins xss --listen 127.0.0.1:1111 --html-output 1.html
 
-./xray_darwin_amd64 --log_level debug webscan --plugins xss,cmd_injection --basic-crawler http://example.com --json-output 1.json
+./xray_darwin_amd64 --log_level debug webscan --plugins xss,cmd-injection --basic-crawler http://example.com --json-output 1.json
 
 ./xray_darwin_amd64 webscan --url http://example.com --data "x=y" --html-output 2.html --json-output 1.json
 
