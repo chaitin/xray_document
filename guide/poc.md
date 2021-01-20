@@ -417,6 +417,7 @@ response 包含的字段如下:
 `response.body` | `[]byte` | 返回包的Body，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法
 `response.headers` | `map[string]string` | 返回包的HTTP头，类似 `request.headers`。
 `response.content_type` | `string` | 返回包的content-type头的值
+`response.latency` | `int` | 响应的延迟时间，可以用于 sql 时间盲注的判断，单位毫秒 (ms)
 
 urlType 包含的字段如下, 以 `http://example.com:8080/a?c=d#x=y` 为例:
 
