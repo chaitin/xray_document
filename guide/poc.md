@@ -85,8 +85,6 @@ http://example.com/a/c/ 不会执行, 超过深度限制 (depth)
 
 其中 `depth` 是 phantasm 插件的一个配置项，用于指定检测深度，可以参考： [插件配置](/configration/plugins?id=dirscan)
 
-
-
 ## 转义说明
 
 在编写expression表达式的时候，尤其要注意一个问题：yaml字符串的转义，与CEL表达式字符串里的转义。
@@ -112,5 +110,5 @@ expression: |
 
 如果 poc 无法扫出期望的结果，可以按照以下思路调试
 
- - 确定 poc 语法正确，payload 正确。
- - 在配置文件 `http` 段中加入 `proxy: "http://proxy:port"`，比如设置 burpsuite 为代理，这样 poc 发送的请求可以在 burp 中看到，看是否是期望的样子。
+- 确定 poc 语法正确，payload 正确。
+- 在配置文件 `http` 段中加入 `proxy: "http://proxy:port"`，比如设置 burpsuite 为代理，这样 poc 发送的请求可以在 burp 中看到，看是否是期望的样子。
