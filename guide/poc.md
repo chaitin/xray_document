@@ -6,8 +6,6 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 2. YAML的内容更加可读
 3. YAML中可以使用注释
 
-项目地址: [gamma](https://github.com/chaitin/gamma)
-
 ## 设计目标
 
 设计目标:
@@ -26,8 +24,8 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 
 ## POC 脚本格式
 
-- [V2 版本](./poc/v2.md)
-- [V1 版本](./poc/v1.md)
+- [V2 版本](guide/poc/v2)
+- [V1 版本](guide/poc/v1)
 
 ## 编写环境
 
