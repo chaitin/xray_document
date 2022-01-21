@@ -53,11 +53,11 @@ if __name__ == '__main__':
  * Environment: development
  * Debug mode: off
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-{'create_time': 1566836256580, 'detail': {'host': 'pentester-web.vulnet', 'param': {'key': 'name', 'position': 'query', 'value': "root'and'lW'='lql"}, 'payload': "root'and'lW'='lql", 'port': 80, 'request': '', 'request1': 'GET /sqli/example1.php?name=root%27and%274w%27%3D%274w HTTP/1.1\r\nHost: pentester-web.vulnet\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169\r\nCookie: key=value\r\nAccept-Encoding: gzip\r\n\r\n', 'request2': 'GET /sqli/example1.php?name=root%27and%27lW%27%3D%27lql HTTP/1.1\r\nHost: pentester-web.vulnet\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169\r\nCookie: key=value\r\nAccept-Encoding: gzip\r\n\r\n', 'response': '', 'response1': 'HTTP/1.1 200 OK\r\n...', 'response2': 'HTTP/1.1 200 OK\r\n...', 'title': "Generic Boolean based case ['string']", 'type': 'boolean_based', 'url': 'http://pentester-web.vulnet/sqli/example1.php?name=root'}, 'plugin': 'sqldet', 'target': {'url': 'http://pentester-web.vulnet/sqli/example1.php', 'params': [{'position': 'query', 'path': ['name']}]}, 'vuln_class': ''}
+{'data': {'create_time': 1642737377634, 'detail': {'addr': 'http://demo.aisec.cn/demo/aisec/js_link.php?id=2&msg=abc', 'extra': {'param': {'key': 'msg', 'position': 'query', 'value': 'aeltmuuikqaqokdvpawp'}}, 'payload': "'><ScRiPt>alert(1)</sCrIpT>", 'snapshot': [['GET /demo/aisec/js_link.php?id=2&msg=%27%3E%3CScRiPt%3Efddsnqpcqy%3C%2FScRiPt%3E HTTP/1.1\r\nHost: demo.aisec.cn\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0\r\nAccept-Encoding: gzip\r\n\r\n', "HTTP/1.1 200 OK\r\nCache-Control: no-cache, must-revalidate\r\nConnection: keep-alive\r\nContent-Type: text/html\r\nDate: Fri, 21 Jan 2022 03:56:17 GMT\r\nServer: WAF3.0\r\nX-Powered-By: PHP/5.4.16\r\n\r\nArray\n(\n    [id] => 2\n    [num] => 22\n)\n<br><br> has this record. \r\n\r\n<br><br><br>\r\n\r\n\r\n\r\n\r\n\r\n<a href='?'><ScRiPt>fddsnqpcqy</ScRiPt>'>link  msg:'><ScRiPt>fddsnqpcqy</ScRiPt></a> (This link has XSS,eg:?msg=' style=x:expression() onmouseover=alert(1) ')\r\n\r\n\r\n<br><br><br>\r\n<hr>\r\n\r\n\r\n<a href='index.php'>go back</a>\r\n\r\n<br><br><br>\r\n"]]}, 'plugin': 'xss/reflected/default', 'target': {'params': [{'path': ['msg'], 'position': 'query'}], 'url': 'http://demo.aisec.cn/demo/aisec/js_link.php'}}, 'type': 'web_vuln'}
 127.0.0.1 - - [27/Aug/2019 00:17:36] "POST /webhook HTTP/1.1" 200 -
 ```
 
-接下来就是解析 xray 的漏洞信息，然后生成对应的页面模板就好了。需要参考[文档](/api/vuln)。因为推送不适合发送太大的数据量，所以就选择了基础的一些字段。
+接下来就是解析 xray 的漏洞信息，然后生成对应的页面模板就好了。需要参考[文档](/webhook/vuln)。因为推送不适合发送太大的数据量，所以就选择了基础的一些字段。
 
 ```python
 from flask import Flask, request
@@ -68,9 +68,11 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def xray_webhook():
-    vuln = request.json
-    # 因为还会收到 https://chaitin.github.io/xray/#/api/statistic 的数据
-    if "vuln_class" not in vuln:
+    data = request.json
+    data_type = data['type']
+    vuln = data["data"]
+    # 因为还会收到 https://chaitin.github.io/xray/#/webhook/statistic 的数据
+    if data_type == "web_vuln":
         return "ok"
     content = """## xray 发现了新漏洞
     
@@ -78,13 +80,10 @@ url: {url}
 
 插件: {plugin}
 
-漏洞类型: {vuln_class}
-
 发现时间: {create_time}
 
 请及时查看和处理
 """.format(url=vuln["target"]["url"], plugin=vuln["plugin"],
-           vuln_class=vuln["vuln_class"] or "Default",
            create_time=str(datetime.datetime.fromtimestamp(vuln["create_time"] / 1000)))
     print(content)
     return 'ok'
@@ -130,9 +129,11 @@ def push_ftqq(content):
 
 @app.route('/webhook', methods=['POST'])
 def xray_webhook():
-    vuln = request.json
-    # 因为还会收到 https://chaitin.github.io/xray/#/api/statistic 的数据
-    if "vuln_class" not in vuln:
+    data = request.json
+    data_type = data['type']
+    vuln = data["data"]
+    # 因为还会收到 https://chaitin.github.io/xray/#/webhook/statistic 的数据
+    if data_type == "web_vuln":
         return "ok"
     content = """## xray 发现了新漏洞
     
@@ -140,13 +141,10 @@ url: {url}
 
 插件: {plugin}
 
-漏洞类型: {vuln_class}
-
 发现时间: {create_time}
 
 请及时查看和处理
 """.format(url=vuln["target"]["url"], plugin=vuln["plugin"],
-           vuln_class=vuln["vuln_class"] or "Default",
            create_time=str(datetime.datetime.fromtimestamp(vuln["create_time"] / 1000)))
     try:
         push_ftqq(content)

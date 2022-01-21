@@ -25,9 +25,9 @@
   - [Use Reverse Platform To Test SSRF Vuln](scenario/reverse_server_ssrf.md)
   - [Send Alarm To IM](scenario/xray_vuln_alert.md)
 - API
-  - [Introduct](api/api.md)
-  - [Vuln](api/vuln.md)
-  - [Statistics](api/statistic.md)
+  - [Introduct](webhook/webhook.md)
+  - [Vuln](webhook/vuln.md)
+  - [Subdomain](webhook/subdomain.md)
 - [Share](share/share.md)
 - [Contribute POC](guide/contribute.md)
 - [Reward](guide/rewards.md)
