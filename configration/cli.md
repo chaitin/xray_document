@@ -150,7 +150,7 @@ OPTIONS:
 `--poc` 配置本次扫描启用哪些 POC, 因为所有 POC 隶属于 phantasm 插件, 所以该参数其实是 phantasm 插件独有的配置。为了使用方便，该参数支持 Glob 表达式批量加载，解析规则为用该参数值匹配内置的 poc 名字，如果有匹配到则启用；然后检查能否匹配本地文件，如果能匹配到，也加载。用起来是非常灵活的，如：
 
 ```
-只加载一个 POC, 精准匹配
+只加载一个 POC
 --plugins phantasm --poc poc-yaml-thinkphp5-controller-rce
 
 加载内置的所有带 `thinkphp` 的 POC

