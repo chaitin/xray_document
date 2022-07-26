@@ -37,8 +37,15 @@ phantasm 是 xray 的 poc 框架，在其下运行着许多 yaml 和 go 写的 p
 
 ```yaml
 depth: 1                            # 与 dirscan 一样，不再赘述
+auto_load_poc: false                # 除内置 poc 外，额外自动加载当前目录以 "poc-" 为文件名前缀的POC文件，等同于在 include_poc 中增加 "./poc-*"
 exclude_poc: []                     # 排除哪些 poc, 支持 glob 语法, 如: /home/poc/*thinkphp* 或 poc-yaml-weblogic*
-local_poc: []                       # 加载本地的 poc, 支持 glob 语法, 如： /home/poc/*
+include_poc: []                     # 只使用哪些内置 poc 以及 额外加载哪些本地 poc, 支持 glob 语法, 如："*weblogic*" 或 "/home/poc/*"
+                                    # 也可使用 --poc 仅运行 指定的内置或本地 poc，进行测试。
+                                    # 例如，可使用如下命令，仅运行当前目录下的 poc 且 不运行内置 poc 进行测试：
+                                    # webscan -poc ./poc-* -url http://example.com
+poc_tags:                           # 为POC添加tag, 然后就可以使用--tags来选择启动哪些POC。poc-yaml-test为poc的name，[]中的内容为该POC对应的标签
+  poc-yaml-test: ["HW", "ST"]
+  poc-yaml-test-1: ["ST"]    
 ```
 
 `exclude_poc` 用于去除加载哪些 poc。一个常见的 case 是如果发现某些 poc 误报比较多，想暂时禁用掉（并反馈给 xray)，那么就可以在这一个配置中加上 poc 的名字，比如:
@@ -53,7 +60,7 @@ plugins:
     - *bad-poc*
 ```
 
-`local_poc` 是用于加载本地的 poc 的配置，最好指定绝对路径，且同样支持 glob 语法。
+`include_poc` 是用于加载本地的 poc 的配置，最好指定绝对路径，且同样支持 glob 语法。
 
 一个稍微复杂的情况是将这两个搭配起来使用，比如:
 
@@ -64,8 +71,16 @@ plugins:
     enabled: true
     exclude_poc:
     - /home/poc/poc-fake-good-poc
-    local_poc:
+    include_poc:
     - /home/poc/*good-poc*
 ```
 
 上述配置的意思是加载 `/home/poc/` 目录下所有符合 `*good-poc*` 这个pattern 的poc，同时去掉同样目录下的 `poc-fake-good-poc`
+
+`poc_tags` 是用于对内置的POC进行打标签，`poc-yaml-test`为poc的name，`["HW", "ST"]`为该POC的标签。
+
+使用示例如下：
+`./xray ws --tags ST,HW`
+这个时候，xray将会加载带有ST标签的POC。
+
+注：--tags可以与--level，--poc同时使用
