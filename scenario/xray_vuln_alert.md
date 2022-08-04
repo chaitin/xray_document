@@ -106,7 +106,7 @@ Server酱是一款程序员和服务器之间的通信软件，也就是从服�
  
 ```python
 import requests
-requests.post("https://sc.ftqq.com/{SECKEY}.send", 
+requests.post("https://sctapi.ftqq.com/{SECKEY}.send", 
               data={"text": "xray vuln alarm", "desp": "test content"})
 ```
 
@@ -122,29 +122,27 @@ app = Flask(__name__)
 
 
 def push_ftqq(content):
-    resp = requests.post("https://sc.ftqq.com/{SECKEY}.send",
+    resp = requests.post("https://sctapi.ftqq.com/{SECKEY}.send",
                   data={"text": "xray vuln alarm", "desp": content})
-    if resp.json()["errno"] != 0:
+    if resp.json()["data"]["errno"] != 0:
         raise ValueError("push ftqq failed, %s" % resp.text)
 
 @app.route('/webhook', methods=['POST'])
 def xray_webhook():
     data = request.json
-    data_type = data['type']
+    typed = data["type"]
+    if typed == "web_statistic":
+        return 'ok'
     vuln = data["data"]
-    # 因为还会收到 https://chaitin.github.io/xray/#/webhook/statistic 的数据
-    if data_type == "web_vuln":
-        return "ok"
-    content = """## xray 发现了新漏洞
-    
+    content = """## xray find new vuln
+
 url: {url}
 
-插件: {plugin}
+plugin: {plugin}
 
-发现时间: {create_time}
+create_time: {create_time}
 
-请及时查看和处理
-""".format(url=vuln["target"]["url"], plugin=vuln["plugin"],
+""".format(url=vuln["detail"]["addr"], plugin=vuln["plugin"],
            create_time=str(datetime.datetime.fromtimestamp(vuln["create_time"] / 1000)))
     try:
         push_ftqq(content)
