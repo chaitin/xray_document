@@ -16,7 +16,14 @@
   - [检查更新配置](configration/update.md)
 - 高级用法
   - [自定义POC语法](guide/poc.md)
+    - [V1](guide/poc/v1.md)
+    - [v2](guide/poc/v2.md)
   - [编写高质量poc](guide/high_quality_poc.md)
+    - [HTTP PATH 的使用](guide/skill/path.md)
+    - [代码执行](guide/skill/rce.md)
+    - [PAYLOAD 的使用](guide/skill/payload.md)
+    - [反连平台的使用](guide/skill/reverse.md)
+    - [头疼的转义](guide/skill/escape.md)
   - [优化扫描速度](guide/speed.md)
 - 使用场景
   - [有奖征文](scenario/intro.md)
