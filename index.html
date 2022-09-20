@@ -99,9 +99,17 @@
       topBanner: {
         content: "🎉&nbsp;&nbsp;Rad 浏览器爬虫发布了 <a href='https://github.com/chaitin/rad' target='_blank'>点击查看详情</a>",
         textAlign: "center",
-        zIndex: 999,
         position: "relative",
-      }
+      },
+      search: {
+        maxAge: 86400000, // Expiration time, the default one day
+        paths: 'auto',
+        placeholder: 'Type to search',
+        noData: 'No Results!',
+        // Headline depth, 1 - 6
+        depth: 6,
+        hideOtherSidebarContent: false, // whether or not to hide other sidebar content
+     },
     }
   </script>
   <script>console.log("想为 xray 贡献一份力量么?\n想为了实现宇宙第一扫描器的目标奋斗么？\n我们期待充满热情，怀抱梦想的你\n投递简历至：yang.yu@chaitin.com")</script>
@@ -117,6 +125,7 @@
   <script src="./assets/static/zoom-image.min.js"></script>
   <script src="./assets/static/docsify-page-toc.js"></script>
   <script src="./assets/static/docsify-ga.min.js"></script>
+  <script src="./assets/static/docsify-search.min.js"></script>
   <script>
     function plugin (hook, vm) {
       hook.ready(function () {
@@ -131,7 +140,7 @@
         const linkColor = topBanner.linkColor || textColor
         const textAlign = topBanner.textAlign || 'center'
         const bannerPosition = topBanner.position || 'fixed'
-        const bannerZIndex = topBanner.zIndex || '99'
+        // const bannerZIndex = topBanner.zIndex || '99'
         // creating the new element
         const bannerElement = document.createElement(defaultTag)
         bannerElement.setAttribute('id', 'TOPBANNER')
@@ -147,7 +156,7 @@
         contentEl.style.backgroundColor = backgroundColor
         contentEl.style.color = textColor
         contentEl.style.position = bannerPosition
-        contentEl.style.zIndex = bannerZIndex
+        // contentEl.style.zIndex = bannerZIndex
         const contentAnchorEl = document.querySelector(`${defaultTag}#TOPBANNER a`)
         contentAnchorEl.style.color = linkColor
         bannerElement.style.textAlign = textAlign
