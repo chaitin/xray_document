@@ -18,6 +18,13 @@
   - [自定义POC语法](guide/poc.md)
     - [v1](guide/poc/v1.md)
     - [v2](guide/poc/v2.md)
+    - [POC编写模版](guide/poc/template.md)
+  - poc编写指南
+    - [第一期](guide/course/phaseI.md)
+    - [第二期](guide/course/phaseII.md)
+    - [第三期](guide/course/phaseIII.md)
+    - [第四期](guide/course/phaseIV.md)
+    - [第五期](guide/course/phaseV.md)
   - [编写高质量poc](guide/high_quality_poc.md)
     - [HTTP PATH 的使用](guide/skill/path.md)
     - [代码执行](guide/skill/rce.md)
