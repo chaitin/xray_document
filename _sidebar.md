@@ -30,6 +30,7 @@
   - [与 rad 联动](scenario/rad.md)
   - [与 Burp 联动](scenario/burp.md)
   - [与 awvs 联动](scenario/awvs.md)
+  - [如何部署xray反连平台](scenario/reverse.md)
   - [使用反连平台挖掘和验证 SSRF](scenario/reverse_server_ssrf.md)
   - [对接微信/企业微信实现自动告警](scenario/xray_vuln_alert.md)
 

@@ -137,7 +137,7 @@ reverse:
 
 ## DNS 相关
 
-这里简单介绍下，有兴趣的同学可以自行探索下。也欢迎各位贡献折腾的过程。
+详细配置内容请参考[如何部署xray反连平台](../scenario/reverse.md)
 
 - listen_ip 监听的 ip
 - domain 在 dns 查询的时候的一级域名，默认为空，将使用随机域名。
