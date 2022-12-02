@@ -16,7 +16,7 @@
   - [检查更新配置](configration/update.md)
 - 高级用法
   - [自定义POC语法](guide/poc.md)
-    - [V1](guide/poc/v1.md)
+    - [v1](guide/poc/v1.md)
     - [v2](guide/poc/v2.md)
   - [编写高质量poc](guide/high_quality_poc.md)
     - [HTTP PATH 的使用](guide/skill/path.md)
@@ -27,9 +27,9 @@
   - [优化扫描速度](guide/speed.md)
 - 使用场景
   - [有奖征文](scenario/intro.md)
+  - [与 rad 联动](scenario/rad.md)
   - [与 Burp 联动](scenario/burp.md)
   - [与 awvs 联动](scenario/awvs.md)
-  - [与 crawlergo 联动](https://github.com/timwhitez/crawlergo_x_XRAY)
   - [使用反连平台挖掘和验证 SSRF](scenario/reverse_server_ssrf.md)
   - [对接微信/企业微信实现自动告警](scenario/xray_vuln_alert.md)
 
