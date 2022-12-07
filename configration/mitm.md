@@ -35,6 +35,7 @@ mitm:
 ```
 
 ## 代理启用密码保护
+
 对应于 `auth` 中的配置。
 
 xray 支持给代理配置基础认证的密码，当设置好 `auth` 中的 `username` 和 `password` 后，使用代理时浏览器会弹框要求输出用户名密码，输入成功后代理才可正常使用。
@@ -42,16 +43,42 @@ xray 支持给代理配置基础认证的密码，当设置好 `auth` 中的 `us
 ## 限制允许使用该代理的 IP
 
 配置中的 `allow_ip_range` 项可以限制哪些 IP 可以使用该代理。支持单个 IP 和 CIDR 格式的地址，如：
+
 ```yaml
 allow_ip_range: ["127.0.0.1","192.168.1.1/24"]
 ```
+
 留空则允许所有地址访问，如果来源 IP 没有在配置的地址内，使用者会显示这样的错误:
 ![ip_range.jpg](../assets/configuration/allow_ip_range.jpg)
+
+## 限制访问的端口、路径、Query Key等
+
+#### 对于端口
+
+可以添加类似 `port_disallowed: [80,443,90-92]`这样的内容，这样xray的被动代理就不会再对80，443，90，91，92这五个端口的请求进行扫描
+
+#### 对于Query Key
+
++ **当设置了 `query_key_allowed: ["id"]`的情况下：**
+  | 情况                               | 例子                                    | xray状态       |
+  | ---------------------------------- | --------------------------------------- | -------------- |
+  | 请求不含任何的 `query key`       | `https://docs.xray.cool/`             | 扫描会正常进行 |
+  | 请求存在一个 `query key`且是id   | `https://docs.xray.cool/?id=1`        | 扫描会正常进行 |
+  | 请求存在一个 `query key`但不是id | `https://docs.xray.cool/?page=2`      | xray将不会扫描 |
+  | 请求存在多个 `query key`且包含id | `https://docs.xray.cool/?page=2&id=1` | xray将不会扫描 |
++ **当设置了 `query_key_disallowed: ["id"]`的情况下：**
+  | 情况                               | 例子                                    | xray状态       |
+  | ---------------------------------- | --------------------------------------- | -------------- |
+  | 请求不含任何的 `query key`       | `https://docs.xray.cool/`             | 扫描会正常进行 |
+  | 请求存在一个 `query key`且是id   | `https://docs.xray.cool/?id=1`        | xray将不会扫描 |
+  | 请求存在一个 `query key`但不是id | `https://docs.xray.cool/?page=2`      | 扫描会正常进行 |
+  | 请求存在多个 `query key`且包含id | `https://docs.xray.cool/?page=2&id=1` | xray将不会扫描 |
++ 其他参数以此类推
 
 ## 队列长度配置
 
 ```yaml
-  queue:
+queue:
     max_length: 3000
 ```
 
