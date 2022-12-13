@@ -61,18 +61,22 @@ allow_ip_range: ["127.0.0.1","192.168.1.1/24"]
 
 + **当设置了 `query_key_allowed: ["id"]`的情况下：**
   | 情况                               | 例子                                    | xray状态       |
-  | ---------------------------------- | --------------------------------------- | -------------- |
-  | 请求不含任何的 `query key`       | `https://docs.xray.cool/`             | 扫描会正常进行 |
-  | 请求存在一个 `query key`且是id   | `https://docs.xray.cool/?id=1`        | 扫描会正常进行 |
-  | 请求存在一个 `query key`但不是id | `https://docs.xray.cool/?page=2`      | xray将不会扫描 |
-  | 请求存在多个 `query key`且包含id | `https://docs.xray.cool/?page=2&id=1` | xray将不会扫描 |
+| ---------------------------------- | --------------------------------------- | -------------- |
+| 请求不含任何的 `query key`       | `https://docs.xray.cool/`             | 扫描会正常进行 |
+| 请求存在一个 `query key`且是id   | `https://docs.xray.cool/?id=1`        | 扫描会正常进行 |
+| 请求存在一个 `query key`但不是id | `https://docs.xray.cool/?page=2`      | xray将不会扫描 |
+| 请求存在多个 `query key`且包含id | `https://docs.xray.cool/?page=2&id=1` | xray将不会扫描 |
+  
+  
 + **当设置了 `query_key_disallowed: ["id"]`的情况下：**
   | 情况                               | 例子                                    | xray状态       |
-  | ---------------------------------- | --------------------------------------- | -------------- |
-  | 请求不含任何的 `query key`       | `https://docs.xray.cool/`             | 扫描会正常进行 |
-  | 请求存在一个 `query key`且是id   | `https://docs.xray.cool/?id=1`        | xray将不会扫描 |
-  | 请求存在一个 `query key`但不是id | `https://docs.xray.cool/?page=2`      | 扫描会正常进行 |
-  | 请求存在多个 `query key`且包含id | `https://docs.xray.cool/?page=2&id=1` | xray将不会扫描 |
+| ---------------------------------- | --------------------------------------- | -------------- |
+| 请求不含任何的 `query key`       | `https://docs.xray.cool/`             | 扫描会正常进行 |
+| 请求存在一个 `query key`且是id   | `https://docs.xray.cool/?id=1`        | xray将不会扫描 |
+| 请求存在一个 `query key`但不是id | `https://docs.xray.cool/?page=2`      | 扫描会正常进行 |
+| 请求存在多个 `query key`且包含id | `https://docs.xray.cool/?page=2&id=1` | xray将不会扫描 |
+  
+  
 + 其他参数以此类推
 
 ## 队列长度配置
@@ -126,3 +130,4 @@ Accept-Encoding: gzip
 ![](../assets/configuration/upstream.jpg)
 
 再次重申下，该配置仅影响代理本身，不会影响插件在漏洞探测时的发包行为，如果想代理漏洞探测的，请参照接下来的 [HTTP配置](./http.md) 的部分!
+
