@@ -1,0 +1,12 @@
+name: Deploy xray Document
+on: [push, pull_request]
+jobs:
+  push:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: up9cloud/action-rsync@master
+        env:
+          HOST: download.xray.cool
+          KEY: ${{secrets.DEPLOY_SSH_KEY}}
+          TARGET: /tmp
