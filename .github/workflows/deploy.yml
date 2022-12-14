@@ -9,4 +9,5 @@ jobs:
         env:
           HOST: download.xray.cool
           KEY: ${{secrets.DEPLOY_SSH_KEY}}
-          TARGET: /tmp
+          TARGET: /home/github/xray_document
+          ARGS: -avz --exclude=/.git/ --exclude=/.github/
