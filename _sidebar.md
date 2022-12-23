@@ -48,5 +48,5 @@
 - [常见问题](guide/faq.md)
 - [技术分享](share/share.md)
 - [贡献POC](guide/contribute.md)
-- [版本对比](https://xray.cool/compare/)
+- [版本对比](generic/compare.md)
 - [提交反馈](guide/feedback.md)
