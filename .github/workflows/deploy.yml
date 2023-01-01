@@ -1,5 +1,11 @@
 name: Deploy xray Document
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    types:
+      - closed
 jobs:
   push:
     runs-on: ubuntu-22.04
