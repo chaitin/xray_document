@@ -1,6 +1,6 @@
 # 函数介绍
 
-xxx函数主要是用来
+`xxx`函数主要是用来
 
 ## 函数原型
 
@@ -26,7 +26,5 @@ func (b1 bytes) xxx(bytes, int, int, string, int) string
   ```HTTP
 
   ```
-- 匹配语句
-  ``
-- 输出结果
-  ``
+- 匹配语句：``
+- 输出结果：``
