@@ -4,7 +4,7 @@
 
 ## 函数原型
 
-func (b1 bytes) bformat(int, int, string, int) string
+`func (b1 bytes) bformat(int, int, string, int) string`
 
 ### 参数介绍
 
