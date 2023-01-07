@@ -1,6 +1,1 @@
-- POC编写指南
-  - [第一期](guide/course/phaseI.md)
-  - [第二期](guide/course/phaseII.md)
-  - [第三期](guide/course/phaseIII.md)
-  - [第四期](guide/course/phaseIV.md)
-  - [第五期](guide/course/phaseV.md)
+- [xray Change Log](./generic/changeLog.md)
