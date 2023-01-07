@@ -18,6 +18,8 @@
   - [自定义POC语法](guide/poc.md)
     - [~~v1版本~~](guide/poc/v1.md)
     - [v2版本（推荐使用）](guide/poc/v2.md)
+    - [xray 脚本注入的类型](guide/poc/type.md)
+    - [xray 脚本注入的函数](guide/poc/func.md)
     - [POC编写模版](guide/poc/template.md)
   - poc编写指南
     - [第一期: yaml基本介绍](guide/course/phaseI.md)
@@ -50,3 +52,4 @@
 - [贡献POC](guide/contribute.md)
 - [版本对比](generic/compare.md)
 - [提交反馈](guide/feedback.md)
+- [xray Change Log](./generic/changeLog.md)
