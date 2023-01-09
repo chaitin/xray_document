@@ -80,3 +80,15 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 
 ![](../assets/tutorial/linux_run_version.jpg)
 <!-- tabs:end -->
+
+## 高级版使用
+
+### 获取途径
+
+1. 在CT stack社区提交POC赚取金币，即可兑换高级版的license
+2. 关注CT stack公众号，b站 长亭科技，会有活动赠送xray高级版
+
+### 使用方式
+
+1. 将获取到的license文件放置到与xray的同级目录下即可生效
+2. 生效后，再次启动xray时，将会在banner上看到xray的高级版信息，以及到期时间
