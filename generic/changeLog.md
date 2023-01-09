@@ -51,6 +51,11 @@ poc-yaml-phpstudy-nginx-wrong-resolve
 poc-yaml-confluence-cve-2022-26138
 poc-yaml-metinfo-lfi-cnvd-2018-13393
 poc-yaml-zabbix-cve-2019-17382
+poc-yaml-wordpress-paypal-pro-cve-2020-14092-sqli
+poc-yaml-vite-cnvd-2022-44615
+poc-yaml-phpmyadmin-cve-2018-12613-file-inclusion
+poc-yaml-zabbix-cve-2022-23134
+poc-yaml-ametys-cms-cve-2022-26159
 ```
 
 #### 优化删除（功能与xray的通用插件重复）
@@ -1051,7 +1056,7 @@ xray x -t 192.168.1.1-254 -p 22,80,443-445
 放置并重新执行`xray x`后提示：
 ```bash=
 ..
-config updated: 
+config updated:
         get-ip-location-info
 ```
 即加载成功
@@ -1084,7 +1089,7 @@ func NewExamplePlugin(e *x.Engine, log x.Logger, reverse *x.Reverse, client *x.C
 		Detail: "获取ip的归属地信息",
 		Config: config,
 	})
-    
+
 	plugin.Events(func(target x.EventTarget) error {
 		if config.DisableExample {
 			return nil
