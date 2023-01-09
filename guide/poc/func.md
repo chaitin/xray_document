@@ -126,7 +126,7 @@ dir("./../../a") => "./../../"
 
 | 函数名       | 函数原型                                        | 说明                                                                                                                                                                                                                                                       | 适用版本     |
 | ------------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| `javaGadget` | `func javaGadget(string, string, string) bytes` | 依据所给出的生成链条以及 payload 内容生成对应的 gadget 内容，第一个参数接收 gadget 类型，例：dns，jdk7u21，jdk8u20，k1，k2，k3，k4，groovy1，beanshellold，beanshellnew；第二个参数为 payload 内容，为 cmd/反连 URL；第三个参数为 payload 类型，为 cmd/url | xray ≥ 1.9.4 |
+| `javaGadget` | `func javaGadget(string, string, string) bytes` | 依据所给出的生成链条以及 payload 内容生成对应的 gadget 内容，第一个参数接收 gadget 类型，例：'dns'，'jdk7u21'，'jdk8u20'，'k1'，'k2'，'k3'，'k4'，'groovy1'，'beanshellold'，'beanshellnew'；第二个参数为 payload 内容，为 cmd/反连URL；第三个参数为 payload 类型，为 cmd/url | xray ≥ 1.9.4 |
 
 - timeConvert 本质上是使用 golang 的 time 包提供的 Format 方法，第一个参数传入时间戳，第二个参数传入想要函数输出的时间格式
 - 以下是 golang 中 time 包对于时间的详细定义
