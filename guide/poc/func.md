@@ -62,17 +62,18 @@ dir("./../../a") => "./../../"
 
 ## 编码函数
 
-| 函数名         | 函数原型                                             | 说明                                                                                            | 适用版本     |
-| -------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------ |
-| `base64`       | `func base64(string/bytes) string`                   | 将字符串或 bytes 进行 base64 编码                                                               | xray ≥ 1.8.4 |
-| `base64Decode` | `func base64Decode(string/bytes) string`             | 将字符串或 bytes 进行 base64 解码                                                               | xray ≥ 1.8.4 |
-| `urlencode`    | `func urlencode(string/bytes) string`                | 将字符串或 bytes 进行 urlencode 编码                                                            | xray ≥ 1.8.4 |
-| `urlencodeall` | `func urlencodeall(string/bytes) string`             | 将字符串或 bytes 进行 urlencode 编码, 结果为全字符编码                                          | xray ≥ 1.8.5 |
-| `urldecode`    | `func urldecode(string/bytes) string`                | 将字符串或 bytes 进行 urldecode 解码                                                            | xray ≥ 1.8.4 |
-| `faviconHash`  | `func faviconHash(string/bytes) int`                 | 将字符串或 bytes 进行 faviconHash 编码，参考：[iconhash](https://github.com/Becivells/iconhash) | xray ≥ 1.8.4 |
-| `htmlEscape`   | `func htmlEscape(string/bytes, string, bool) string` | 将字符串或 bytes 进行 htmlEscape 编码，支持 named/numeric/hex 模式，支持全/非全字符编码         | xray ≥ 1.9.4 |
-| `hex`          | `func hex(string/bytes) string`                      | 将字符串或 bytes 进行 hex 编码                                                                  | xray ≥ 1.9.4 |
-| `hexDecode`    | `func hexDecode(string/bytes) string`                | 将字符串或 bytes 进行 hex 解码                                                                  | xray ≥ 1.9.4 |
+| 函数名         | 函数原型                                             | 说明                                                                                            | 适用版本     | 详情                                              |
+| -------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------- |
+| `base64`       | `func base64(string/bytes) string`                   | 将字符串或 bytes 进行 base64 编码                                                               | xray ≥ 1.8.4 | |
+| `base64Decode` | `func base64Decode(string/bytes) string`             | 将字符串或 bytes 进行 base64 解码                                                               | xray ≥ 1.8.4 | |
+| `urlencode`    | `func urlencode(string/bytes) string`                | 将字符串或 bytes 进行 urlencode 编码                                                            | xray ≥ 1.8.4 | |
+| `urlencodeall` | `func urlencodeall(string/bytes) string`             | 将字符串或 bytes 进行 urlencode 编码, 结果为全字符编码                                          | xray ≥ 1.8.5 | |
+| `urldecode`    | `func urldecode(string/bytes) string`                | 将字符串或 bytes 进行 urldecode 解码                                                            | xray ≥ 1.8.4 | |
+| `faviconHash`  | `func faviconHash(string/bytes) int`                 | 将字符串或 bytes 进行 faviconHash 编码，参考：[iconhash](https://github.com/Becivells/iconhash) | xray ≥ 1.8.4 | |
+| `htmlEscape`   | `func htmlEscape(string/bytes, string, bool) string` | 将字符串或 bytes 进行 htmlEscape 编码，支持 named/numeric/hex 模式，支持全/非全字符编码         | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/hex.md)      |
+| `htmlUnescape` | `func htmlUnescape(string/bytes) string`             | 将字符串或 bytes 进行 htmlEscape 解码，支持 named/numeric/hex 模式，支持全/非全字符编码         | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/hexDecode.md)      |
+| `hex`          | `func hex(string/bytes) string`                      | 将字符串或 bytes 进行 hex 编码                                                                  | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/htmlEscape.md)      |
+| `hexDecode`    | `func hexDecode(string/bytes) string`                | 将字符串或 bytes 进行 hex 解码                                                                  | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/htmlUnescape.md)      |
 
 ## 加密函数
 
@@ -115,8 +116,8 @@ dir("./../../a") => "./../../"
 
 ## 版本
 
-| 函数名        | 函数原型                               | 说明                                                                | 适用版本     | 详情                                        |
-| ------------- | -------------------------------------- | ------------------------------------------------------------------- | ------------ | ---------------------------------------- |
+| 函数名           | 函数原型                                          | 说明                                                                                    | 适用版本     | 详情                                              |
+| ---------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------ | ------------------------------------------------- |
 | `versionIn`      | `func versionIn(s1 string,s2 string) bool`        | 判断所给出的版本是否在所限定的版本范围之内，版本格式参考: [semver](https://semver.org/) | xray ≥ 1.9.4 | [🔎](guide/poc/example/version/versionIn.md)      |
 | `versionLess`    | `func (s1 string) versionLess(s2 string) bool`    | 判断所给出的版本是否小于所给出的版本，版本格式参考: [semver](https://semver.org/)       | xray ≥ 1.9.4 | [🔎](guide/poc/example/version/versionLess.md)    |
 | `versionGreater` | `func (s1 string) versionGreater(s2 string) bool` | 判断所给出的版本是否大于所给出的版本，版本格式参考: [semver](https://semver.org/)       | xray ≥ 1.9.4 | [🔎](guide/poc/example/version/versionGreater.md) |
@@ -124,9 +125,9 @@ dir("./../../a") => "./../../"
 
 ## java 反序列化
 
-| 函数名       | 函数原型                                        | 说明                                                                                                                                                                                                                                                                           | 适用版本     |
-| ------------ | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
-| `javaGadget` | `func javaGadget(gadget string, payload string, type string) bytes` | 依据所给出的生成链条以及 payload 内容生成对应的 gadget 内容，第一个参数接收 gadget 类型，例：'dns'，'jdk7u21'，'jdk8u20'，'k1'，'k2'，'k3'，'k4'，'groovy1'，'beanshellold'，'beanshellnew'；第二个参数为 payload 内容，为 cmd/反连 URL；第三个参数为 payload 类型，为 cmd/url | xray ≥ 1.9.4 |
+| 函数名       | 函数原型                                                            | 说明                                                                                                                                                           | 适用版本     | 详情                                            |
+| ------------ | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------------------------------- |
+| `javaGadget` | `func javaGadget(gadget string, payload string, type string) bytes` | 依据所给出的生成链条以及 payload 内容生成对应的 gadget 内容，第一个参数接收 gadget 类型；第二个参数为 payload 内容，为 cmd/反连 URL；第三个参数为 payload 类型 | xray ≥ 1.9.4 | [🔎](guide/poc/example/ysoGadget/javaGadget.md) |
 
 - timeConvert 本质上是使用 golang 的 time 包提供的 Format 方法，第一个参数传入时间戳，第二个参数传入想要函数输出的时间格式
 - 以下是 golang 中 time 包对于时间的详细定义
