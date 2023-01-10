@@ -91,4 +91,9 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 ### 使用方式
 
 1. 将获取到的license文件放置到与xray的同级目录下即可生效
+    
+    ⚠️ 注意，license文件的名称必须是`xray-license.lic`才会生效
+
 2. 生效后，再次启动xray时，将会在banner上看到xray的高级版信息，以及到期时间
+
+   ![](../assets/tutorial/license.lic.png)

@@ -19,10 +19,10 @@
 
 1. 新增警告信息，师傅们可以根据警告信息删除检测插件创建的文件等
 2. 支持在GET，HEAD，OPTION时添加body
-3. 添加compare version函数，可以对匹配出的版本进行对比
-4. 添加html实体编码函数
-5. 添加java反序列化函数
-6. 添加hex/hexDecode函数
+3. 添加[compare version](guide/poc/func?id=版本)函数，可以对匹配出的版本进行对比
+4. 添加[html实体编码](guide/poc/example/encode/htmlEscape)/[解码](guide/poc/example/encode/htmlUnescape)函数
+5. 添加[java反序列化函数](guide/poc/example/ysoGadget/javaGadget)
+6. 添加[hex](guide/poc/example/encode/hex)/[hexDecode](guide/poc/example/encode/hexDecode)函数
 
 ### 优化内容
 
