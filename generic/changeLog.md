@@ -1,7 +1,7 @@
 # XRAY Changelog
 国内用户可以从 https://stack.chaitin.com/tool/detail?id=1 进行下载，速度更快
 
-## 1.9.4
+## 1.9.4(2023-01-10)
 
 ### 更新内容
 
