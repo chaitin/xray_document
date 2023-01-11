@@ -14,20 +14,20 @@ xray 支持所有 CEL 文档中的函数，同时还新增了一些函数支持�
 
 ## 字符串处理
 
-| 函数名            | 函数原型                                                     | 说明                                                                | 适用版本         | 详情                                          |
-|----------------|----------------------------------------------------------|-------------------------------------------------------------------|--------------|---------------------------------------------|
-| `contains`     | `func (s1 string) contains(s2 string) bool`              | 判断 s1 是否包含 s2，返回 bool 类型结果                                        | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/contains.md)  |
-| `icontains`    | `func (s1 string) icontains(s2 string) bool`             | 判断 s1 是否包含 s2，返回 bool 类型结果, 与 contains 不同的是，icontains 忽略大小写       | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/icontains.md) |
-| `substr`       | `func substr(string, start int, length int) string`      | 截取字符串                                                             | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/substr.md)    |
-| `replaceAll`   | `func replaceAll(string, old string, new string) string` | 将 string 中的 old 替换为 new，返回替换后的 string                             | xray ≥ 1.8.4 |                                             |
-| `printable`    | `func printable(string) string`                          | 将 string 中的非 unicode 编码字符去掉                                       | xray ≥ 1.8.4 |                                             |
-| `toUintString` | `func toUintString(s1 string, direction string) string`  | direction 取值为 `>`,`<`表示读取方向, 将 s1 按 direction 读取为一个整数，返回该整数的字符串形式 | xray ≥ 1.8.4 |                                             |
-| `startsWith`   | `func (s1 string) startsWith(s2 string) bool`            | 判断 s1 是否由 s2 开头                                                   | xray ≥ 1.8.4 |                                             |
-| `endsWith`     | `func (s1 string) endsWith(s2 string) bool`              | 判断 s1 是否由 s2 结尾                                                   | xray ≥ 1.8.4 |                                             |
-| `basename`     | `func basename(s1 string) string`                        | 返回 URL 的最后一个路径的名称                                                 | xray ≥ 1.9.1 | [🔎](guide/poc/example/string/basename.md)  |
-| `dir`          | `func dir(s1 string) string`                             | 返回 URL 的路径                                                        | xray ≥ 1.9.1 | [🔎](guide/poc/example/string/dir.md)       |
-| `upper`        | `func upper(s1 string) string`                           | 将 string 中的小写字母转换成大写                                              | xray ≥ 1.9.3 |                                             |
-| `rev`          | `func rev(s1 string) string`                             | 将 string 反向输出，主要用于验证命令执行                                          | xray ≥ 1.9.3 |                                             |
+| 函数名            | 函数原型                                                     | 说明                                                                | 适用版本         | 详情                                             |
+|----------------|----------------------------------------------------------|-------------------------------------------------------------------|--------------|------------------------------------------------|
+| `contains`     | `func (s1 string) contains(s2 string) bool`              | 判断 s1 是否包含 s2，返回 bool 类型结果                                        | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/contains.md)     |
+| `icontains`    | `func (s1 string) icontains(s2 string) bool`             | 判断 s1 是否包含 s2，返回 bool 类型结果, 与 contains 不同的是，icontains 忽略大小写       | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/icontains.md)    |
+| `substr`       | `func substr(string, start int, length int) string`      | 截取字符串                                                             | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/substr.md)       |
+| `replaceAll`   | `func replaceAll(string, old string, new string) string` | 将 string 中的 old 替换为 new，返回替换后的 string                             | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/replaceAll.md)   |
+| `printable`    | `func printable(string) string`                          | 将 string 中的非 unicode 编码字符去掉                                       | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/printable.md)    |
+| `toUintString` | `func toUintString(s1 string, direction string) string`  | direction 取值为 `>`,`<`表示读取方向, 将 s1 按 direction 读取为一个整数，返回该整数的字符串形式 | xray ≥ 1.8.4 | [🔎](guide/poc/example/string/toUintString.md) |
+| `startsWith`   | `func (s1 string) startsWith(s2 string) bool`            | 判断 s1 是否由 s2 开头                                                   | xray ≥ 1.8.4 |                                                |
+| `endsWith`     | `func (s1 string) endsWith(s2 string) bool`              | 判断 s1 是否由 s2 结尾                                                   | xray ≥ 1.8.4 |                                                |
+| `basename`     | `func basename(s1 string) string`                        | 返回 URL 的最后一个路径的名称                                                 | xray ≥ 1.9.1 | [🔎](guide/poc/example/string/basename.md)     |
+| `dir`          | `func dir(s1 string) string`                             | 返回 URL 的路径                                                        | xray ≥ 1.9.1 | [🔎](guide/poc/example/string/dir.md)          |
+| `upper`        | `func upper(s1 string) string`                           | 将 string 中的小写字母转换成大写                                              | xray ≥ 1.9.3 |                                                |
+| `rev`          | `func rev(s1 string) string`                             | 将 string 反向输出，主要用于验证命令执行                                          | xray ≥ 1.9.3 |                                                |
 
 ## []byte 处理
 
