@@ -30,6 +30,7 @@ xray 是一款功能强大的安全评估工具，由多名经验丰富的一线
 - CRLF 注入 (key: crlf-injection)
 - Struts2 系列漏洞检测 (高级版，key: struts)
 - Thinkphp系列漏洞检测 (高级版，key: thinkphp)
+- XStream 系列漏洞检测 (key: xstream)
 - POC 框架 (key: phantasm)
 
 其中 POC 框架默认内置 Github 上贡献的 poc，用户也可以根据需要自行构建 poc 并运行。
