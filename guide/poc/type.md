@@ -13,6 +13,8 @@ xray 支持所有CEL文档中的类型，同时还注入了几种特殊的类型
 
 ## 基本类型
 
+### addrType
+
 addrType 类型包含字段如下, 设变量名为 `addr`
 
 | 变量名              | 类型       | 说明                                                        | 适用版本         |
@@ -21,12 +23,16 @@ addrType 类型包含字段如下, 设变量名为 `addr`
 | `addr.addr`      | `string` | 目的地址， 获取失败时返回空字符串，形如： `192.0.2.1:25`, `[2001:2001::1]:80` | xray ≥ 1.8.4 |
 | `addr.port`      | `string` | 端口号， 获取失败时返回 `""`                                         | xray ≥ 1.8.4 |
 
+### connInfoType
+
 connInfoType 类型包含字段如下, 设变量名为 `conn`
 
 | 变量名                | 类型         | 说明     | 适用版本         |
 |--------------------|------------|--------|--------------|
 | `conn.source`      | `addrType` | 源地址信息  | xray ≥ 1.8.4 |
 | `conn.destination` | `addrType` | 目的地址信息 | xray ≥ 1.8.4 |
+
+### urlType
 
 urlType 类型包含的字段如下, 设变量名为 `url`, 以 `http://example.com:8080/a?c=d#x=y` 为例:
 
@@ -40,6 +46,8 @@ urlType 类型包含的字段如下, 设变量名为 `url`, 以 `http://example.
 | `url.query`    | `string` | url 的 query, 示例为 `"c=d"`           | xray ≥ 1.8.4 |
 | `url.fragment` | `string` | url 的锚点，示例为 `"x=y"`                | xray ≥ 1.8.4 |
 
+### reverseType
+
 reverseType 类型包含字段如下, 设变量名为 `reverse`（需要先使用 `newReverse()` 生成实例)
 
 | 变量名                             | 类型                        | 说明                            | 适用版本         |
@@ -50,6 +58,12 @@ reverseType 类型包含字段如下, 设变量名为 `reverse`（需要先使�
 | `reverse.ip`                    | `string`                  | 反连平台的 ip 地址                   | xray ≥ 1.8.4 |
 | `reverse.is_domain_name_server` | `bool`                    | 反连平台的 domain 是否同时是 nameserver | xray ≥ 1.8.4 |
 | `reverse.wait(timeout)`         | `func (timeout int) bool` | 等待 timeout 秒，并返回是否在改时间内获得了信息  | xray ≥ 1.8.4 |
+
+> 参数详情介绍：[🔎详情](guide/poc/exampleType/reverse.md)
+
+### Timestamp
+
+Timestamp 类型实际是google.protobuf.Timestamp类型，为cel表达式本身自带的类型，其本身包含了非常多的方法，详情可查看：[Timestamp](guide/poc/exampleType/timestamp.md)
 
 ## tcp request and response
 
