@@ -1715,8 +1715,6 @@ Changes:
 
 注意：下载后需要将文件名手动改为 `xray-license.lic`，放置在 xray 二进制同一目录并删除之前的配置文件才能使用高级版的全部功能。
 
-![](https://hackmd.in.chaitin.net/uploads/upload_4358435221f9d5a01d2f836d9ee7c0fd.jpg)
-
 ----
 
 以下为 xray 一周年纪念版的更新内容
