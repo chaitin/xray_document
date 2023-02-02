@@ -138,6 +138,67 @@ For the below advanced usage, please refer to [https://chaitin.github.io/xray/](
  - the usage of reverse server
  - ...
 
+## ⚡️ GUI Tool
+
+`4ra1n` of Our Team made an `GUI` tool.
+
+### Download
+
+Latest: [Latest Release](https://github.com/4ra1n/super-xray/releases/latest)
+
+### PoC Search
+
+![](https://docs.xray.cool/assets/gui/0008.png)
+
+### Use PoCs
+
+Search and copy PoCs.
+
+![](https://docs.xray.cool/assets/gui/0007.png)
+
+### Run with Rad
+
+After version 0.8, it can be linked with `rad`:
+
+Note: First enter the port to enable passive scanning, and then open the `rad` coordination.
+
+![](https://docs.xray.cool/assets/gui/0004.png)
+
+### Download Panel
+
+After version 1.0, we support download panel:
+
+![](https://docs.xray.cool/assets/gui/0005.png)
+
+### Subdomain Scan
+
+After version 1.0, we support subdomain scan:
+
+![](https://docs.xray.cool/assets/gui/0006.png)
+
+### Reverse
+
+1. Finish client reverse config and Click Configure Server
+2. Enter any database file name
+3. Enter the token password arbitrarily
+4. Do not change the IP address and enter a listening port
+5. Click Export Configuration File to get a reverse/config.yaml
+6. Copy xray and this file to the server
+7. Server `./xray reverse` Start the reverse platform
+8. Enter the corresponding token and http url on the reverse connection platform (note that the IP format is http://1.1.1.1:8080 ）
+9. Enable active scanning or passive scanning
+
+![](https://docs.xray.cool/assets/gui/0009.png)
+
+### Menu
+
+Help
+
+![](https://docs.xray.cool/assets/gui/0010.png)
+
+Version Check
+
+![](https://docs.xray.cool/assets/gui/0011.png)
 
 ## 📝 Discussion
 
