@@ -15,7 +15,6 @@ func (b1 bytes) xxx(bytes, int, int, string, int) string
 
 ## 举例
 
-
 | 待转换数据 | 转换语句 | 输出结果 |
 |-------|------|------|
 |       |      |      |
