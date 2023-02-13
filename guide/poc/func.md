@@ -46,10 +46,10 @@ xray 支持所有 CEL 文档中的函数，同时还新增了一些函数支持�
 |----------------|------------------------------------------------------|------------------------------------------------------------------------------------|--------------|------------------------------------------------|
 | `base64`       | `func base64(v1 string/bytes) string`                | 将字符串或 bytes 进行 base64 编码                                                           | xray ≥ 1.8.4 | [🔎](guide/poc/example/encode/base64.md)       |
 | `base64Decode` | `func base64Decode(v1 string/bytes) string`          | 将字符串或 bytes 进行 base64 解码                                                           | xray ≥ 1.8.4 | [🔎](guide/poc/example/encode/base64Decode.md) |
-| `urlencode`    | `func urlencode(v1 string/bytes) string`             | 将字符串或 bytes 进行 urlencode 编码                                                        | xray ≥ 1.8.4 |                                                |
-| `urlencodeall` | `func urlencodeall(v1 string/bytes) string`          | 将字符串或 bytes 进行 urlencode 编码, 结果为全字符编码                                              | xray ≥ 1.8.5 |                                                |
-| `urldecode`    | `func urldecode(v1 string/bytes) string`             | 将字符串或 bytes 进行 urldecode 解码                                                        | xray ≥ 1.8.4 |                                                |
-| `faviconHash`  | `func faviconHash(v1 string/bytes) int`              | 将字符串或 bytes 进行 faviconHash 编码，参考：[iconhash](https://github.com/Becivells/iconhash) | xray ≥ 1.8.4 |                                                |
+| `urlencode`    | `func urlencode(v1 string/bytes) string`             | 将字符串或 bytes 进行 urlencode 编码                                                        | xray ≥ 1.8.4 | [🔎](guide/poc/example/encode/urlencode.md)    |
+| `urlencodeall` | `func urlencodeall(v1 string/bytes) string`          | 将字符串或 bytes 进行 urlencode 编码, 结果为全字符编码                                              | xray ≥ 1.8.5 | [🔎](guide/poc/example/encode/urlencodeall.md) |
+| `urldecode`    | `func urldecode(v1 string/bytes) string`             | 将字符串或 bytes 进行 urldecode 解码                                                        | xray ≥ 1.8.4 | [🔎](guide/poc/example/encode/urldecode.md)    |
+| `faviconHash`  | `func faviconHash(v1 string/bytes) int`              | 将字符串或 bytes 进行 faviconHash 编码，参考：[iconhash](https://github.com/Becivells/iconhash) | xray ≥ 1.8.4 | [🔎](guide/poc/example/encode/faviconHash.md)  |
 | `htmlEscape`   | `func htmlEscape(string/bytes, string, bool) string` | 将字符串或 bytes 进行 htmlEscape 编码，支持 named/numeric/hex 模式，支持全/非全字符编码                    | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/htmlEscape.md)   |
 | `htmlUnescape` | `func htmlUnescape(string/bytes) string`             | 将字符串或 bytes 进行 htmlEscape 解码，支持 named/numeric/hex 模式，支持全/非全字符编码                    | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/htmlUnescape.md) |
 | `hex`          | `func hex(string/bytes) string`                      | 将字符串或 bytes 进行 hex 编码                                                              | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/hex.md)          |
@@ -57,11 +57,11 @@ xray 支持所有 CEL 文档中的函数，同时还新增了一些函数支持�
 
 ## 加密函数
 
-| 函数名       | 函数原型                                                     | 说明                                                                                                                                            | 适用版本         |
-|-----------|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------|
-| `md5`     | `func md5(string) string`                                | 字符串的 md5                                                                                                                                      | xray ≥ 1.8.4 |
-| `sha`     | `func sha(string/bytes, string)string`                   | 该函数可以将指定字符串或 bytes 进行 sha 系列计算，第二个参数控制加密类型。例：sha('asd','sha1')。目前支持'sha1'、'sha224'、'sha256'、'sha384'、'sha512'                                 | xray ≥ 1.8.4 |
-| `hmacSha` | `func hmacSha(string/bytes, string/bytes, string)string` | 该函数可以将指定字符串或 bytes 进行 hmac_sha 系列计算，第一个参数为待加密明文，第二个参数为密钥，第三个参数控制加密类型。例：sha('asd','123','sha1')。目前支持'sha1'、'sha224'、'sha256'、'sha384'、'sha512' | xray ≥ 1.8.4 |
+| 函数名       | 函数原型                                                        | 说明                                   | 适用版本         | 详情                                            |
+|-----------|-------------------------------------------------------------|--------------------------------------|--------------|-----------------------------------------------|
+| `md5`     | `func md5(v1 string/bytes) string`                          | 字符串的 md5                             | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/md5.md)     |
+| `sha`     | `func sha(v1 string/bytes, s1 string)string`                | 该函数可以将指定字符串或 bytes 进行 sha 系列计算。      | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/sha.md)     |
+| `hmacSha` | `func hmacSha(v1 string/bytes, s1 string, s2 string)string` | 该函数可以将指定字符串或 bytes 进行 hmac_sha 系列计算。 | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/hmacSha.md) |
 
 ## 随机值
 
