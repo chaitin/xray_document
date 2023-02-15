@@ -8,17 +8,17 @@
 
 ### 参数介绍
 
-| 参数名称 | 参数介绍                 |
-| -------- | ------------------------ |
-| s1       | 需要进行比较的版本字符串 |
-| s2       | 需要进行判断的版本字符串 |
+| 参数名称 | 参数介绍         |
+|------|--------------|
+| s1   | 需要进行比较的版本字符串 |
+| s2   | 需要进行判断的版本字符串 |
 
 ## 举例
 
-| 待转换数据      | 转换语句                                     | 输出结果 |
-| --------------- | -------------------------------------------- | -------- |
-| `1.8.1`         | `"1.8.1".versionLess("1.8.2")`               | `true`   |
-| `1.8.1.1-alpha` | `"1.8.1.1-alpha".versionLess("1.8.1-alpha")` | `false`  |
+| 待转换数据           | 转换语句                                         | 输出结果    |
+|-----------------|----------------------------------------------|---------|
+| `1.8.1`         | `"1.8.1".versionLess("1.8.2")`               | `true`  |
+| `1.8.1.1-alpha` | `"1.8.1.1-alpha".versionLess("1.8.1-alpha")` | `false` |
 
 - **Response**
 
@@ -30,7 +30,7 @@
   Connection: close
   Vary: Accept-Encoding
   Cache-Control: no-cache
-  Content-Length: 2180
+  Content-Length: 85
 
   <!DOCTYPE html>
   <html>
@@ -43,5 +43,5 @@
   </html>
   ```
 
-- 匹配语句：`"(?P<version>\d\.\d\.\d\.)".submatch(response.body_string)["version"].versionLess("1.8.2")`
+- 匹配语句：`"(?P<version>\\d\\.\\d\\.\\d\\.)".submatch(response.body_string)["version"].versionLess("1.8.2")`
 - 输出结果：`true`
