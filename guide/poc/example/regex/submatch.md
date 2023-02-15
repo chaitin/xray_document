@@ -19,6 +19,7 @@
 - 其中 name 是捕获组的名称，pattern 是要匹配的模式。捕获组是一种可以将匹配的文本捕获并在后续操作中使用的机制。
 - 在yaml中，我们将name化作map的key，pattern匹配到的内容化作value，也就是说，在一段正则中，可以存在多个命名捕获组，例如：
   - `"^SSH-([\\d.]+)-OpenSSH_(?P<version0>[\\w._-]+) Debian-(?P<version1>\\S*maemo\\S*)\\r?\\n"`
+  - 可以看到上方的例子中的`\w`、`\d`、`\n`等都被替换成了`\\w`、`\\d`、`\\n`，这是因为需要规避yaml的转译
 
 
 ## 举例
@@ -94,4 +95,4 @@
   ```yaml
   search: '"(?<token>\\w*)".submatch(response.headers["Token"])'
   token: search["token"]
-- ```
+  ```
