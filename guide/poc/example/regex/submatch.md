@@ -66,7 +66,7 @@
   ```
 - 如果是要提供给下一个规则，则可以使用output：
   ```yaml
-  name: poc-yaml-openssl-cve-2022-3602-3786
+  name: poc-yaml-test
   transport: http
   rules:
     r0:
