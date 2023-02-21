@@ -7,7 +7,6 @@
 - 最佳实践
   - POC
     - [POC编写模版](guide/poc/template.md)
-  - 指纹
   - 通用场景
     - [HTTP PATH 的使用](guide/skill/path.md)
     - [代码执行](guide/skill/rce.md)
