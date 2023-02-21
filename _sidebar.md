@@ -4,6 +4,10 @@
   - [代理模式进行扫描](tutorial/webscan_proxy.md)
   - [基础爬虫模式进行扫描](tutorial/webscan_basic_crawler.md)
   - [服务扫描](tutorial/service_scan.md)
+- 贡献
+  - [贡献POC](tutorial/contribute.md)
+  - [有奖征文](scenario/intro.md)
+  - [提交反馈](tutorial/feedback.md)
 - 配置文件
   - [概述](configration/README.md)
   - [并发配置](configration/parallel.md)
@@ -17,7 +21,6 @@
   - [优化扫描速度](tutorial/speed.md)
 
 - 使用场景
-  - [有奖征文](scenario/intro.md)
   - [与 rad 联动](scenario/rad.md)
   - [与 Burp 联动](scenario/burp.md)
   - [与 awvs 联动](scenario/awvs.md)
@@ -31,7 +34,5 @@
   - [子域名](webhook/subdomain.md)
 - [常见问题](tutorial/faq.md)
 - [技术分享](share/share.md)
-- [贡献POC](tutorial/contribute.md)
 - [版本对比](generic/compare.md)
-- [提交反馈](tutorial/feedback.md)
 - [xray Change Log](./generic/changeLog.md)
