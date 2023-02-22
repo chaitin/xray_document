@@ -14,8 +14,7 @@
 
 ## 举例
 
-| 待转换数据                              | 转换语句                                            | 输出结果                                     |
-|------------------------------------|-------------------------------------------------|------------------------------------------|
-| `http://example.com?a=b`           | `urlencode("http://example.com?a=b")`           | `http%3A%2F%2Fexample.com%3Fa%3Db`       |
-| `YGVjaG8gemZpaSA+IHZyZHoudHh0YA==` | `urlencode("YGVjaG8gemZpaSA+IHZyZHoudHh0YA==")` | `YGVjaG8gemZpaSA%2BIHZyZHoudHh0YA%3D%3D` |
-| `b"http://example.com?a=b"`        | `urlencode(b"http://example.com?a=b")`          | `http%3A%2F%2Fexample.com%3Fa%3Db`       |
+| 待转换数据                       | 转换语句                                      | 输出结果                                                                 |
+|-----------------------------|-------------------------------------------|----------------------------------------------------------------------|
+| `http://example.com?a=b`    | `urlencodeall("http://example.com?a=b")`  | `%68%74%74%70%3A%2F%2F%65%78%61%6D%70%6C%65%2E%63%6F%6D%3F%61%3D%62` |
+| `b"http://example.com?a=b"` | `urlencodeall(b"http://example.com?a=b")` | `%68%74%74%70%3A%2F%2F%65%78%61%6D%70%6C%65%2E%63%6F%6D%3F%61%3D%62` |
