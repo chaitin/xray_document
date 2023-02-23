@@ -32,3 +32,5 @@ detail:
     - test.test
 ```
 其中的xxxxxxx为一个int的数值，表示计算出的hash。
+
+> 该函数一般配合`getIconContent()`一同使用，详情参考：[🔎](guide/poc/example/other/getIconContent.md)

@@ -188,7 +188,7 @@ poc-yaml-thinkcmf-cve-2018-19898-sqli
 3. 修复一些意外导致panic的问题
 4. 添加 rev 字符串反向函数，添加 upper 字符串大写函数
 5. 为 response 添加 icon_url 属性
-6. 添加 getIconContent 方法
+6. 添加 [getIconContent](guide/poc/example/other/getIconContent.md) 方法
 7. 新增如下插件：
     - amcrest-cve-2017-8229-info-leak.yml
     - anymacro-mail-fileread.yml
