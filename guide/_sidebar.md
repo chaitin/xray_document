@@ -1,9 +1,9 @@
 - 基础格式
   - [自定义POC语法](guide/README.md)
-    - [~~v1版本~~](guide/poc/v1.md)
-    - [v2版本](guide/poc/v2.md)
-    - [xray 脚本注入的类型](guide/poc/type.md)
-    - [xray 脚本注入的函数](guide/poc/func.md)
+  - [~~v1版本~~](guide/poc/v1.md)
+  - [v2版本](guide/poc/v2.md)
+  - [xray 脚本注入的类型](guide/poc/type.md)
+  - [xray 脚本注入的函数](guide/poc/func.md)
 - 最佳实践
   - POC
     - [POC编写模版](guide/poc/template.md)
