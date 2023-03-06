@@ -8,6 +8,21 @@
     --link-color: white;
 }
 
+#docsify-darklight-theme{
+    position:absolute;
+    right:-13px;
+    top:75px;
+    width:25px;
+    height:25px;
+    background-repeat:no-repeat;
+    background-image:var(--toogleImage);
+    background-size:cover;
+    cursor:pointer;
+    transition:background-image .15s ease-in-out .15s
+}
+
+#docsify-darklight-theme p{visibility:hidden}
+
 .cover:before {
     background-color: transparent;
     background-image: none;
@@ -21,9 +36,9 @@
     width: 10em;
 }
 
-.app-nav:not(:empty) ~ main .markdown-section {
-    padding-top: 5rem;
-}
+/*.app-nav:not(:empty) ~ main .markdown-section {*/
+/*    padding-top: 5rem;*/
+/*}*/
 
 @media screen and (max-width: 768px) {
     .app-nav>ul>li:not(:last-child) {
@@ -52,8 +67,15 @@
     box-shadow: 0 0 5px #46464685;
 }
 
+/*.markdown-section {*/
+/*    padding-bottom: 7vh;*/
+/*}*/
+
 .markdown-section {
-    padding-bottom: 7vh;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 30px 15px 40px;
+    position: relative;
 }
 
 .emoji {
