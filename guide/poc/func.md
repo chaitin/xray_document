@@ -72,12 +72,12 @@ xray 支持所有 CEL 文档中的函数，同时还新增了一些函数支持�
 
 ## 正则
 
-| 函数名         | 函数原型                                                       | 说明                                                                                                                     | 适用版本         | 详情                                         |
-|-------------|------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|--------------|--------------------------------------------|
-| `matches`   | `func (s1 string) matches(s2 string) bool`                 | 使用正则表达式 s1 来匹配 s2，返回 bool 类型匹配结果                                                                                       | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/matches.md)   |
-| `submatch`  | `func (s1 string) submatches(s2 string) map[string]string` | 使用正则表达式 s1 来匹配 s2，返回 map[string]string 类型结果，**注**：只返回具名的正则匹配结果 (?P<name>…) 格式                                          | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/submatch.md)  |
-| `bmatches`  | `func (s1 string) bmatches(b1 bytes) bool`                 | 使用正则表达式 s1 来匹配 b1，返回 bool 类型匹配结果。与 matches 不同的是，bmatches 匹配的是字节流（bytes）                                                | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/bmatches.md)  |
-| `bsubmatch` | `func (s1 string) bsubmatches(b1 bytes) map[string]string` | 使用正则表达式 s1 来匹配 b1，返回 map[string]string 类型结果 **注**：只返回具名的正则匹配结果 (?P<name>…) 格式。与 submatch 不同的是，bsubmatch 匹配的是字节流（bytes） | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/bsubmatch.md) |
+| 函数名         | 函数原型                                                     | 说明                                                                                                                     | 适用版本         | 详情                                         |
+|-------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|--------------|--------------------------------------------|
+| `matches`   | `func (s1 string) matches(s2 string) bool`               | 使用正则表达式 s1 来匹配 s2，返回 bool 类型匹配结果                                                                                       | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/matches.md)   |
+| `submatch`  | `func (s1 string) submatch(s2 string) map[string]string` | 使用正则表达式 s1 来匹配 s2，返回 map[string]string 类型结果，**注**：只返回具名的正则匹配结果 (?P<name>…) 格式                                          | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/submatch.md)  |
+| `bmatches`  | `func (s1 string) bmatches(b1 bytes) bool`               | 使用正则表达式 s1 来匹配 b1，返回 bool 类型匹配结果。与 matches 不同的是，bmatches 匹配的是字节流（bytes）                                                | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/bmatches.md)  |
+| `bsubmatch` | `func (s1 string) bsubmatch(b1 bytes) map[string]string` | 使用正则表达式 s1 来匹配 b1，返回 map[string]string 类型结果 **注**：只返回具名的正则匹配结果 (?P<name>…) 格式。与 submatch 不同的是，bsubmatch 匹配的是字节流（bytes） | xray ≥ 1.8.4 | [🔎](guide/poc/example/regex/bsubmatch.md) |
 
 ## 反连平台
 
