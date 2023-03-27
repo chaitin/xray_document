@@ -37,8 +37,8 @@
   lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
   mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
   ```
-- 匹配语句：`"root:.*?:[0-9]*:[0-9]*:".matches(response.body)`
+- 匹配语句：`"root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)`
 - 输出结果：`true`
 
-- 匹配语句：`"Accept-Enco.*".matches(response.raw)`
+- 匹配语句：`"Accept-Enco.*".bmatches(response.raw)`
 - 输出结果：`true`
