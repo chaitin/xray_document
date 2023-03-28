@@ -8,6 +8,7 @@
   - [贡献POC](tutorial/contribute.md)
   - [有奖征文](scenario/intro.md)
   - [提交反馈](tutorial/feedback.md)
+  - [线下活动](tutorial/ali.md)
 - 配置文件
   - [概述](configration/README.md)
   - [并发配置](configration/parallel.md)
