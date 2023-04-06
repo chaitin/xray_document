@@ -1,25 +1,27 @@
-- 基础格式
-  - [自定义POC语法](guide/README.md)
-  - [~~v1版本~~](guide/poc/v1.md)
-  - [v2版本](guide/poc/v2.md)
-  - [xray 脚本注入的类型](guide/poc/type.md)
-  - [xray 脚本注入的函数](guide/poc/func.md)
-- 最佳实践
-  - POC
-    - [POC编写模版](guide/poc/template.md)
-  - 通用场景
-    - [HTTP PATH 的使用](guide/skill/path.md)
-    - [代码执行](guide/skill/rce.md)
-    - [PAYLOAD 的使用](guide/skill/payload.md)
-    - [反连平台的使用](guide/skill/reverse.md)
-    - [头疼的转义](guide/skill/escape.md)
-- poc编写教程
-  - [第一期: yaml基本介绍](guide/course/phaseI.md)
-  - [第二期: 一个POC的基本构成](guide/course/phaseII.md)
-  - [第三期: 漏洞编写实例](guide/course/phaseIII.md)
-  - [第四期: 如何编写一个高质量POC](guide/course/phaseIV.md)
-  - [第五期: Q & A](guide/course/phaseV.md)
-- 编写高质量poc
-  - [编写高质量poc](guide/high_quality_poc.md)
-- [贡献POC](guide/contribute.md)
+- [**介绍**](/guide/README.md)
+- [**快速开始**](/guide/QuickStart.md)
+- [**环境配置**](/guide/environment.md)
+- **YAML插件介绍**
+  - [**YAML格式介绍**](/guide/yaml/yamlFormat.md)
+  - [**YAML插件的基本构成**]()
+  - [**YAML插件的运行逻辑**]()
+- **高级用法**
+  - [**set**]()
+  - [**payload**](/guide/skill/payload.md)
+  - [**path**](/guide/skill/path.md)
+  - [**reverse-利用反连平台的POC编写**](/guide/skill/reverse.md)
+  - [**output**]()
+  - [**转义的各类问题**](/guide/skill/escape.md)
+- **最佳实践**
+  - [**POC编写模板**](/guide/poc/template.md)
+  - [**指纹编写模板**]()
+  - [**漏洞编写实例（CVE-2021-43798）**](/guide/course/phaseIII.md)
 
+- [**高质量POC规范**]()
+- [**高质量指纹规范**]()
+- [**YAML插件修复手册**]()
+- **附录**
+  - [**xray 脚本注入的类型**](/guide/poc/type.md)
+  - [**xray 脚本注入的函数**](/guide/poc/func.md)
+  - [**Q & A**](/guide/course/phaseV.md)
+- [**贡献POC**](/guide/contribute.md)
