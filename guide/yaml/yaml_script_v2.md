@@ -137,6 +137,7 @@ expression: r0() && r1()
         - body 中包含 url 的 path
 
     每一个expression表达式都会返回一个bool结果，然后在存在&&或||的时候，与其他的expression表达式做运算，最终出一个结果，最终结果如果为true，则代表这个规则命中。
+
 ### 与rules同级的expression的使用
 
 对于脚本层级的 expression，这个结果作为最后脚本是否匹配成功的值，通常脚本层级的 expression 是 rule 结果的一个组合。 比如一个脚本包含 `r1`, `r2`, `r3`，`r4` 4 条规则， 作为脚本层级的 expression，其全局变量将会定义  `r1`, `r2`, `r3`， `r4`  4 个函数，调用这个 4 个函数即可获得它对应 rule 的结果。
@@ -224,11 +225,10 @@ set:
 
 该字段用于定义多个 payload，来实现发送不同 payload 的效果。 该字段结构如下
 
-| 变量名/函数名    | 类型               | 说明         |
-|------------|------------------|------------|
-| `continue` | `bool`           | 命中一个之后是否继续 |
-| `payloads` | `map[string]Set` | 和 `set`    |
-| 一样的结构和语法   |                  |            |
+| 变量名/函数名    | 类型               | 说明              |
+|------------|------------------|-----------------|
+| `continue` | `bool`           | 命中一个之后是否继续      |
+| `payloads` | `map[string]Set` | 和 `set`一样的结构和语法 |
 
 形如：
 
@@ -343,7 +343,6 @@ detail:
 - `author: string` 作者
 - `links: []string` 相关链接
 - `warning: string` 警告信息
--
 - `fingerprint` 指纹信息
     - `infos: []Info` 指纹信息
         - `id: string` 长亭指纹库 ID

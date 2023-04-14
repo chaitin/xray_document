@@ -14,8 +14,8 @@
   - [**output**](/guide/skill/output.md)
   - [**转义的各类问题**](/guide/skill/escape.md)
 - **常用模板**
-  - [**POC编写模板**](/guide/poc/template.md)
-  - [**指纹编写模板**]()
+  - [**POC编写模板**](/guide/yaml/yaml_poc_template.md)
+  - [**指纹编写模板**](/guide/yaml/yaml_finger_template.md)
   - [**漏洞编写实例（CVE-2021-43798）**](/guide/course/phaseIII.md)
 
 - **高质量POC规范**
