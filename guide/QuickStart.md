@@ -33,3 +33,5 @@ detail:
 
 - 确定 poc 语法正确，payload 正确。
 - 在配置文件 `http` 段中加入 `proxy: "http://proxy:port"`，比如设置 burpsuite 为代理，这样 poc 发送的请求可以在 burp 中看到，看是否是期望的样子。
+
+[//]: # (TODO：添加Burp发包截图)

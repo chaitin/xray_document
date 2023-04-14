@@ -7,6 +7,9 @@
   - [**YAML插件的基本构成**](/guide/yaml/yaml_script_v2.md)
   - [**YAML插件的运行逻辑**](/guide/yaml/yaml_run_logic.md)
 - **高级用法**
+
+[//]: # (TODO：统一边栏命名与文档命名，例：自定义变量 - set)
+
   - [**定义变量**](/guide/skill/set.md)
   - [**payload**](/guide/skill/payload.md)
   - [**path**](/guide/skill/path.md)
