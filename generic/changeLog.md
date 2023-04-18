@@ -1,6 +1,41 @@
 # XRAY Changelog <!-- {docsify-ignore-all} -->
 国内用户可以从 https://stack.chaitin.com/tool/detail?id=1 进行下载，速度更快
 
+## 1.9.6(2023-4-18)
+
+### 版本介绍
+
+该版本为 Apache Druid远程代码执行漏洞 的应急版本，相较上个版本，除了添加了一个POC外，未改动其他内容。
+
+### 更新内容
+
+新增poc-yaml-apache-druid-kafka-rce检测插件
+想要检测该漏洞的师傅，可以使用
+
+`./xray ws --poc poc-yaml-apache-druid-kafka-rce --url example.com`
+
+进行检测。
+
+相关参考链接：[CT stack](https://stack.chaitin.com/techblog/detail?id=78)
+
+
+## 1.9.5(2023-4-11)
+
+### 版本介绍
+
+该版本为 瑞友天翼应用虚拟化系统远程代码执行漏洞 的应急版本，除了增加该漏洞的POC，未对其他内容做修改。
+
+### 更新内容
+
+新增poc-yaml-realor-gwt-system-sql-injection检测插件（因为漏洞本身是sql注入引起的RCE，所以漏洞分类是sql-injection）
+想要检测该漏洞的师傅，可以使用
+
+`./xray ws --poc poc-yaml-realor-gwt-system-sql-injection --url example.com`
+
+进行检测。
+
+相关参考链接：[CT stack](https://stack.chaitin.com/techblog/detail?id=74)
+
 ## 1.9.4(2023-01-10)
 
 ### 更新内容
