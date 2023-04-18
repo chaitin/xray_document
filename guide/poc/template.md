@@ -75,8 +75,6 @@ detail:
         - https://github.com/vulhub/vulhub/tree/master/php/CVE-2012-1823
 ```
 
-> 靶站：https://vulhub.org/#/environments/php/CVE-2012-1823/
-
 ##### **Spring-Cloud SPEL**
 
 ```yaml
@@ -107,8 +105,6 @@ detail:
     AffectedVersion: 3.2.2
     description: spring cloud function <= 3.2.2 会对特定的header进行SPEL解析,导致RCE
 ```
-
-> 靶站：https://vulhub.org/#/environments/spring/CVE-2022-22963
 
 <!-- tabs:end -->
 在随机数过小的情况下，可能还是会出现误报，所以，请在适当的时候，活用`bstartsWith`方法或者尝试匹配**网页中的其他特征**。
