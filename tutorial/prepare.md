@@ -7,7 +7,7 @@ xray 为单文件二进制文件，无依赖，也无需安装，下载后直接
 请下载的时候选择最新的版本下载。
 
 + Github: https://github.com/chaitin/xray/releases （国外速度快）
-+ 网盘: https://yunpan.360.cn/surl_y3Gu6cugi8u （国内速度快）
++ CT stack: https://stack.chaitin.com/tool/detail?id=1 （国内速度快）
 
 > 注意： 不要直接 clone 仓库，xray 并不开源，仓库内不含源代码，直接下载构建的二进制文件即可。
 
