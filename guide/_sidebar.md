@@ -10,11 +10,11 @@
 
 [//]: # (TODO：统一边栏命名与文档命名，例：自定义变量 - set)
 
-  - [**定义变量**](/guide/skill/set.md)
-  - [**payload**](/guide/skill/payload.md)
-  - [**path**](/guide/skill/path.md)
-  - [**reverse-利用反连平台的POC编写**](/guide/skill/reverse.md)
-  - [**output**](/guide/skill/output.md)
+  - [**自定义变量 - set**](/guide/skill/set.md)
+  - [**全局变量载荷 - payload**](/guide/skill/payload.md)
+  - [**扫描路径 - path**](/guide/skill/path.md)
+  - [**反连平台 - reverse**](/guide/skill/reverse.md)
+  - [**输出 - output**](/guide/skill/output.md)
   - [**转义的各类问题**](/guide/skill/escape.md)
 - **常用模板**
   - [**POC编写模板**](/guide/yaml/yaml_poc_template.md)
