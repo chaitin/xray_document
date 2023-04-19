@@ -26,17 +26,17 @@ Set的作用只为定义变量，在set中我们能对变量进行基础的运�
 
 ```yaml
 set:
-  n1: randomLowercase(4)
+	n1: randomLowercase(4)
 ...
 rules:
-    r1:
-        request:
-          cache: true
-          method: GET
-          path: /xxx/yyy/{{n1}}.txt
-          follow_redirects: false
-        expression: response.status == 200 && response.body.bcontains(bytes(string(n1)))
-    ...
+	r1:
+		request:
+			cache: true
+			method: GET
+			path: /xxx/yyy/{{n1}}.txt
+			follow_redirects: false
+		expression: response.status == 200 && response.body.bcontains(bytes(string(n1)))
+	...
 expression: r1()
 ```
 
@@ -142,7 +142,9 @@ payloads格式较为简单，一般来说能够通过lint检查就是一个正�
 对于某一个漏洞，我们有以下的虚拟情景
 
 ```text
-某cve，能通过多个组件完成利用（这里举例为8个），同时不同组件能够使用一个统一的入口进行调用。在调用组件之后，有一个统一的位置会存储着我们访问的结果，我们需要对产生的结果额外发出请求来匹配其中的内容，从而判断这个系统中是否存在相关的漏洞。试考虑写出这个漏洞对应的yaml poc
+某cve，能通过多个组件完成利用（这里举例为8个），同时不同组件能够使用一个统一的入口进行调用。
+在调用组件之后，有一个统一的位置会存储着我们访问的结果，我们需要对产生的结果额外发出请求来匹配其中的内容，从而判断这个系统中是否存在相关的漏洞。
+试考虑写出这个漏洞对应的yaml poc
 ```
 
 ### 优化之前，普通写法
@@ -162,71 +164,71 @@ name: poc-yaml-test-payloads
 manual: true
 transport: http
 rules:
-  r0:
-    request:
-      method: POST
-      path: /admin%20/upload-srv-1
-      headers:
-        Content-Type: application/x-www-form-urlencoded
-      body: xxxxxxxxxxxx
-    expression: |
-      response.status == 200 && response.body_string.contains("aaaavvvcccc")
-  v0:
-    request:
-      method: GET
-      path: /aaaavvvcccc
-    expression: |
-      "aaaaaaaa".bmatches(response.body)
-  r1:
-    request:
-      method: POST
-      path: /admin%20/upload-srv-2
-      headers:
-        Content-Type: application/x-www-form-urlencoded
-      body: xxxxxxxxxxxx
-    expression: |
-      response.status == 200 && response.body_string.contains("aaaavvvcccc")
-  v1:
-    request:
-      method: GET
-      path: /aaaavvvcccc
-    expression: |
-      "bbbbbbbb".bmatches(response.body)
-  r2:
-    request:
-      method: POST
-      path: /admin%20/upload-srv-3
-      headers:
-        Content-Type: application/x-www-form-urlencoded
-      body: xxxxxxxxxxxx
-    expression: |
-      response.status == 200 && response.body_string.contains("aaaavvvcccc")
-  v2:
-    request:
-      method: GET
-      path: /aaaavvvcccc
-    expression: |
-      "cccccccc".bmatches(response.body)
-  r3:
-    request:
-      method: POST
-      path: /admin%20/upload-srv-4
-      headers:
-        Content-Type: application/x-www-form-urlencoded
-      body: xxxxxxxxxxxx
-    expression: |
-      response.status == 200 && response.body_string.contains("aaaavvvcccc")
-  v4:
-    request:
-      method: GET
-      path: /aaaavvvcccc
-    expression: |
-      "dddddddd".bmatches(response.body)
+  r0:
+    request:
+      method: POST
+      path: /admin%20/upload-srv-1
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      body: xxxxxxxxxxxx
+    expression: |
+      response.status == 200 && response.body_string.contains("aaaavvvcccc")
+  v0:
+    request:
+      method: GET
+      path: /aaaavvvcccc
+    expression: |
+      "aaaaaaaa".bmatches(response.body)
+  r1:
+    request:
+      method: POST
+      path: /admin%20/upload-srv-2
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      body: xxxxxxxxxxxx
+    expression: |
+      response.status == 200 && response.body_string.contains("aaaavvvcccc")
+  v1:
+    request:
+      method: GET
+      path: /aaaavvvcccc
+    expression: |
+      "bbbbbbbb".bmatches(response.body)
+  r2:
+    request:
+      method: POST
+      path: /admin%20/upload-srv-3
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      body: xxxxxxxxxxxx
+    expression: |
+      response.status == 200 && response.body_string.contains("aaaavvvcccc")
+  v2:
+    request:
+      method: GET
+      path: /aaaavvvcccc
+    expression: |
+      "cccccccc".bmatches(response.body)
+  r3:
+    request:
+      method: POST
+      path: /admin%20/upload-srv-4
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      body: xxxxxxxxxxxx
+    expression: |
+      response.status == 200 && response.body_string.contains("aaaavvvcccc")
+  v4:
+    request:
+      method: GET
+      path: /aaaavvvcccc
+    expression: |
+      "dddddddd".bmatches(response.body)
 expression: r0() && v0() || r1() && v1() || r2() && v2() || r3() && v3()
 detail:
-  author: Chaitin
-  links:
-    - http://example.com
+  author: Chaitin
+  links:
+    - http://example.com
 ```
 
 ### 优化之后，使用payload进行编写
@@ -245,57 +247,57 @@ name: poc-yaml-test-payloads
 manual: true
 transport: http
 payloads:
-  payloads:
-    upload1:
-      path: |
-        "upload-srv-1"
-      body: |
-        "xxxxxxxxxxxx"
-      re: |
-        "aaaaaaaa"
-    upload2:
-      path: |
-        "upload-srv-2"
-      body: |
-        "xxxxxxxxxxxx"
-      re: |
-        "bbbbbbbb"
-    upload3:
-      path: |
-        "upload-srv-3"
-      body: |
-        "xxxxxxxxxxxx"
-      re: |
-        "cccccccc"
-    upload4:
-      path: |
-        "upload-srv-4"
-      body: |
-        "xxxxxxxxxxxx"
-      re: |
-        "dddddddd"
+	payloads:
+		upload1:
+			path: |
+				"upload-srv-1"
+			body: |
+				"xxxxxxxxxxxx"
+			re: |
+				"aaaaaaaa"
+		upload2:
+			path: |
+				"upload-srv-2"
+			body: |
+				"xxxxxxxxxxxx"
+			re: |
+				"bbbbbbbb"
+		upload3:
+			path: |
+				"upload-srv-3"
+			body: |
+				"xxxxxxxxxxxx"
+			re: |
+				"cccccccc"
+		upload4:
+			path: |
+				"upload-srv-4"
+			body: |
+				"xxxxxxxxxxxx"
+			re: |
+				"dddddddd"
 rules:
-  r0:
-    request:
-      method: POST
-      path: /admin%20/{{path}}
-      headers:
-        Content-Type: application/x-www-form-urlencoded
-      body: |
-        "{{body}}"
-    expression: |
-      response.status == 200 && response.body_string.contains("aaaavvvcccc")
-  verify:
-    request:
-      method: GET
-      path: /aaaavvvcccc
-    expression: |
-      re.bmatches(response.body)
+	r0:
+		request:
+			method: POST
+			path: /admin%20/{{path}}
+			headers:
+				Content-Type: application/x-www-form-urlencoded
+			body: |
+				"{{body}}"
+		expression: |
+			response.status == 200 && response.body_string.contains("aaaavvvcccc")
+	verify:
+		request:
+			method: GET
+			path: /aaaavvvcccc
+		expression: |
+			re.bmatches(response.body)
 expression: r0() && verify()
 detail:
-   author: Chaitin
-   links:
-    - http://example.com
+	author: Chaitin
+	links:
+		- http://example.com
 ```
 
 按照payload的展开规则展开后两者的expression其实是相同的，但是将两者进行对比，我们可以发现，优化之后的poc相比优化之前的poc，内容上大概有以下方面的强化
@@ -325,36 +327,36 @@ web服务的访问路径会因为对应的安装路径以及系统特性而有�
 
 ```yaml
 # target: http://example.com:8080/test/test
-rules: 
-	r0: 
-		request: 
-			cache: true 
-			method: GET 
+rules:
+	r0:
+		request:
+			cache: true
+			method: GET
 			# target: http://example.com:8080/test/a 
-			path: /a 
-		expression: "true" 
-		output: 
-			r0Url: request.url.path 
-	r1: 
-		request: 
-			cache: true 
-			method: GET 
+			path: /a
+		expression: "true"
+		output:
+			r0Url: request.url.path
+	r1:
+		request:
+			cache: true
+			method: GET
 			# target: http://example.com:8080/test/test/b 
-			path: '^{{inputPath}}/b' 
-		expression: "true" 
-	r2: 
-		request: 
-			cache: true 
-			method: GET 
+			path: '^{{inputPath}}/b'
+		expression: "true"
+	r2:
+		request:
+			cache: true
+			method: GET
 			# target: http://example.com:8080/c 
-			path: ^/c 
-		expression: "true" 
-	r3: 
-		request: 
-			cache: true 
-			method: GET 
+			path: ^/c
+		expression: "true"
+	r3:
+		request:
+			cache: true
+			method: GET
 			# target: http://example.com:8080/test/a/d
-			path: '^{{r0Url}}/d' 
+			path: '^{{r0Url}}/d'
 		expression: "true"
 ```
 
