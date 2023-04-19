@@ -1,13 +1,14 @@
-# POC编写模版
-## 常规正则匹配规范
-### 文件类
+# POC编写模板
+## HTTP
+### 常规正则匹配规范
+#### 文件类
 ```yaml
 - /etc/passwd
 	- "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
 - c:/windows/win.ini
   - response.body_string.contains("for 16-bit app support")
 ```
-### 命令类（原则上，在不能使用expr等操作时才可使用以下命令进行证明）
+#### 命令类（原则上，在不能使用expr等操作时才可使用以下命令进行证明）
 ```yaml
 - id
   - "(u|g)id=\\d+".matches(response.body_string) && response.body_string.contains("root")
@@ -18,10 +19,10 @@
   - echo {{randstr}} | rev
   - response.body_string.contains(rev(randstr))
 ```
-## 常规漏洞检测模版
-### RCE类
-#### 常规RCE
-##### 代码执行
+### 常规漏洞检测模版
+#### RCE类
+##### 常规RCE
+###### 代码执行
 ```yaml
 name: poc-yaml-test-php-rce
 manual: true
@@ -71,7 +72,7 @@ detail:
     links:
         - https://test.com
 ```
-##### 命令执行
+###### 命令执行
 ```yaml
 name: poc-yaml-test-rce
 manual: true
@@ -138,7 +139,7 @@ detail:
     links:
         - http://test.com
 ```
-#### 无回显RCE
+##### 无回显RCE
 ```yaml
 name: poc-yaml-test
 manual: true
@@ -168,8 +169,8 @@ detail:
     links:
         - http://test.com
 ```
-### SQL注入类
-#### 普通注入
+#### SQL注入类
+##### 普通注入
 ```yaml
 name: poc-yaml-test-sqli
 manual: true
@@ -190,7 +191,7 @@ detail:
     links:
         - https://www.test.com
 ```
-#### 报错注入
+##### 报错注入
 ```yaml
 name: poc-yaml-test-sqli
 manual: true
@@ -211,7 +212,7 @@ detail:
     links:
         - https://www.test.com
 ```
-#### 布尔盲注
+##### 布尔盲注
 ```yaml
 name: poc-yaml-test
 manual: true
@@ -247,7 +248,7 @@ detail:
     links:
         - https://www.test.com
 ```
-#### 时间盲注
+##### 时间盲注
 ```yaml
 name: poc-yaml-test-sqli
 manual: true
@@ -275,7 +276,7 @@ detail:
     links:
         - http://test.com
 ```
-### SSRF/URL跳转类
+#### SSRF/URL跳转类
 目前暂时推荐使用example.com/example.org，后续会支持配置文件中动态获取
 以下为具体示例，在不影响验证的情况下，推荐使用r0规则进行验证（URL跳转）
 **ps**：在使用r0规则时，有两点需要注意：
@@ -319,8 +320,8 @@ detail:
     links:
         - http://test.com
 ```
-### 文件读取类
-#### 系统文件
+#### 文件读取类
+##### 系统文件
 ```yaml
 name: poc-yaml-test
 manual: true
@@ -344,7 +345,7 @@ detail:
     links:
         - https://www.test.com
 ```
-#### 网站配置文件
+##### 网站配置文件
 ```yaml
 name: poc-yaml-test
 manual: true
@@ -363,7 +364,7 @@ detail:
     links:
         - https://www.test.com
 ```
-### 未授权类
+#### 未授权类
 ```yaml
 name: poc-yaml-test-unauth
 manual: true
@@ -381,7 +382,7 @@ detail:
     links:
         - https://www.test.com
 ```
-### 弱口令类
+#### 弱口令类
 ```yaml
 name: poc-yaml-test
 manual: true
@@ -415,12 +416,12 @@ detail:
   links:
     - https://www.test.com
 ```
-## 难以无害化漏洞检测模版
-### 文件删除
+### 难以无害化漏洞检测模版
+#### 文件删除
 此类漏洞建议使用版本匹配的方式，或者匹配其他特征的方式侧面验证漏洞的存在，不要直接执行删除请求，以防对测试目标造成损害。
-### 文件修改
+#### 文件修改
 此类漏洞建议使用版本匹配的方式，或者匹配其他特征的方式侧面验证漏洞的存在，不要直接执行删除请求，以防对测试目标造成损害。
-### 文件上传
+#### 文件上传
 
 - `multipart/form-data; boundary=---------------------------16314487820932200903769468567`中的boundary应随机化
 - 在上传的文件不能删除的情况下，可以选择继续上传一个同名空文件（请确保上传后的文件名称不被重命名），将原来的文件内容进行覆盖。
@@ -506,10 +507,10 @@ detail:
     links:
         - https://test.com
 ```
-### 账号/密码修改
+#### 账号/密码修改
 此类漏洞建议使用版本匹配的方式，或者匹配其他特征的方式侧面验证漏洞的存在，不要直接执行删除请求，以防对测试目标造成损害。
-## 特殊漏洞检测
-### 文件读取后，返回内容被编码
+### 特殊漏洞检测
+#### 文件读取后，返回内容被编码
 ```yaml
 name: poc-yaml-test
 manual: true
@@ -530,7 +531,7 @@ detail:
   links:
     - https://www.test.com
 ```
-### Mssql unicode编码字符串
+#### Mssql unicode编码字符串
 ```yaml
 name: poc-yaml-test
 manual: true
@@ -550,4 +551,40 @@ detail:
   links:
     - https://www.test.com
 ```
+## TCP
 
+### POC
+
+#### 常规服务漏洞
+
+##### memcache未授权访问漏洞
+
+```yaml=
+name: poc-yaml-test
+manual: false
+transport: tcp
+rules:
+  r0:
+    request:
+      content: "stats"
+      read_timeout: "3"
+    expression: response.raw.bcontains(b"STAT pid") && response.raw.bcontains(b"STAT version")
+    output:
+      version: '"STAT version (?P<version>[\\d\\.]+)".bsubmatch(response.raw)["version"]'
+      host: response.conn.destination.addr
+expression: r0()
+detail:
+  author: test
+  fingerprint:
+    infos:
+      - name: "memcache"
+        version: "{{version}}"
+    host_info:
+      hostname: "{{host}}"
+```
+
+#### 需要建立多个TCP连接进行验证的漏洞
+
+可能类似这样的漏洞：CVE-2016-8704
+
+参考连接：https://talosintelligence.com/vulnerability_reports/TALOS-2016-0219/

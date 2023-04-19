@@ -1,25 +1,42 @@
-- 基础格式
-  - [自定义POC语法](guide/README.md)
-  - [~~v1版本~~](guide/poc/v1.md)
-  - [v2版本](guide/poc/v2.md)
-  - [xray 脚本注入的类型](guide/poc/type.md)
-  - [xray 脚本注入的函数](guide/poc/func.md)
-- 最佳实践
-  - POC
-    - [POC编写模版](guide/poc/template.md)
-  - 通用场景
-    - [HTTP PATH 的使用](guide/skill/path.md)
-    - [代码执行](guide/skill/rce.md)
-    - [PAYLOAD 的使用](guide/skill/payload.md)
-    - [反连平台的使用](guide/skill/reverse.md)
-    - [头疼的转义](guide/skill/escape.md)
-- poc编写教程
-  - [第一期: yaml基本介绍](guide/course/phaseI.md)
-  - [第二期: 一个POC的基本构成](guide/course/phaseII.md)
-  - [第三期: 漏洞编写实例](guide/course/phaseIII.md)
-  - [第四期: 如何编写一个高质量POC](guide/course/phaseIV.md)
-  - [第五期: Q & A](guide/course/phaseV.md)
-- 编写高质量poc
-  - [编写高质量poc](guide/high_quality_poc.md)
-- [贡献POC](guide/contribute.md)
+- [**介绍**](/guide/README.md)
+- [**快速开始**](/guide/QuickStart.md)
+- [**文档使用方法**](/guide/use.md)
+- [**环境配置**](/guide/environment.md)
+- **YAML插件介绍**
 
+  - [**YAML格式介绍**](/guide/yaml/yaml_format.md)
+  - [**YAML插件的基本构成**](/guide/yaml/yaml_script_v2.md)
+  - [**YAML插件的运行逻辑**](/guide/yaml/yaml_run_logic.md)
+- **高级用法**
+
+  - [**自定义变量 - set**](/guide/skill/set.md)
+  - [**全局变量载荷 - payload**](/guide/skill/payload.md)
+  - [**扫描路径 - path**](/guide/skill/path.md)
+  - [**反连平台 - reverse**](/guide/skill/reverse.md)
+  - [**转义的各类问题**](/guide/skill/escape.md)
+
+[//]: # (todo:  - [**输出 - output**]&#40;/guide/skill/output.md&#41;)
+
+- **常用模板**
+
+  - [**POC编写模板**](/guide/yaml/yaml_poc_template.md)
+  - [**漏洞编写实例（CVE-2021-43798）**](/guide/course/phaseIII.md)
+
+[//]: # (todo:  - [**指纹编写模板**]&#40;/guide/yaml/yaml_finger_template.md&#41;)
+
+
+- **高质量POC规范**
+
+  - [**简述**](/guide/hiq/summary.md)
+  - [**脚本通用部分**](/guide/hiq/about_common_part.md)
+  - [**漏洞检测部分**](/guide/hiq/about_vulns.md)
+  - [**一些常见的问题**](/guide/hiq/question_answer.md)
+
+[//]: # (todo: - [**高质量指纹规范**]&#40;&#41;)
+- [**YAML插件修复手册**](/guide/yaml/yaml_fix.md)
+
+- **附录**
+
+  - [**YAML插件的参数类型与函数**](/guide/yaml/yaml_type_func.md)
+  - [**Q & A**](/guide/course/phaseV.md)
+- [**贡献POC**](/guide/contribute.md)

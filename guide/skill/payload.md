@@ -1,4 +1,4 @@
-# payload 的使用
+# 全局变量载荷 - payload
 
 尽量将 payload 单独抽离出来作为变量定义，可以方便后续对于 payload 进行增删改
 
