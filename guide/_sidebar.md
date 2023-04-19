@@ -13,14 +13,16 @@
   - [**全局变量载荷 - payload**](/guide/skill/payload.md)
   - [**扫描路径 - path**](/guide/skill/path.md)
   - [**反连平台 - reverse**](/guide/skill/reverse.md)
-  - [**输出 - output**](/guide/skill/output.md)
   - [**转义的各类问题**](/guide/skill/escape.md)
+
+[//]: # (todo:  - [**输出 - output**]&#40;/guide/skill/output.md&#41;)
+
 - **常用模板**
 
   - [**POC编写模板**](/guide/yaml/yaml_poc_template.md)
   - [**漏洞编写实例（CVE-2021-43798）**](/guide/course/phaseIII.md)
 
-[//]: # (  - [**指纹编写模板**]&#40;/guide/yaml/yaml_finger_template.md&#41;)
+[//]: # (todo:  - [**指纹编写模板**]&#40;/guide/yaml/yaml_finger_template.md&#41;)
 
 
 - **高质量POC规范**
@@ -30,7 +32,7 @@
   - [**漏洞检测部分**](/guide/hiq/about_vulns.md)
   - [**一些常见的问题**](/guide/hiq/question_answer.md)
 
-[//]: # (- [**高质量指纹规范**]&#40;&#41;)
+[//]: # (todo: - [**高质量指纹规范**]&#40;&#41;)
 - [**YAML插件修复手册**](/guide/yaml/yaml_fix.md)
 
 - **附录**
