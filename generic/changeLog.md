@@ -1,6 +1,22 @@
 # XRAY Changelog <!-- {docsify-ignore-all} -->
 国内用户可以从 https://stack.chaitin.com/tool/detail?id=1 进行下载，速度更快
 
+## 1.9.7(2023-4-20)
+
+### 版本介绍
+
+该版本为 WebLogic多个高危漏洞 的应急版本，相较上个版本，除了添加了一个POC外，未改动其他内容。
+
+### 更新内容
+
+想要检测该漏洞的师傅，可以使用
+
+`./xray ss -m weblogic -t ip:port`
+
+进行检测。
+
+相关参考链接：[CT stack](https://stack.chaitin.com/techblog/detail?id=79)
+
 ## 1.9.6(2023-4-18)
 
 ### 版本介绍
