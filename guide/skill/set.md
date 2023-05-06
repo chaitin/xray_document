@@ -86,4 +86,48 @@ if age >= 18 {
 
 ### 案例
 
-[//]: # (TODO)
+<!-- tabs:start -->
+
+#### **mysql指纹匹配（截取）**
+
+```yaml
+name: fingerprint-yaml-tcp-mysql
+manual: false
+transport: tcp
+set:
+  GenericLines: b"\r\n\r\n"
+payloads:
+  payloads:
+    l:
+      re: '"(?s)^.\\0\\0\\0\\xffj\\x04''[\\d.]+'' .* MySQL"'
+    m:
+      re: '"(?s)^.\\0\\0\\0\\x0a(?P<version>5\\.[-_~.+:\\w]+MariaDB-[-_~.+:\\w]+~bionic)\\0"'
+    n:
+      re: '"(?s)^.\\0\\0\\0\\x0a(?P<version>[\\w._-]+)\\0............\\0\\x5f\\xd3\\x2d\\x02\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0............\\0$"'
+    r:
+      re: '"(?s)^.\\0\\0\\0\\x0a(?P<version>3\\.[-_~.+\\w]+)\\0...\\0"'
+    s:
+      re: '"(?s)^.\\0\\0\\0\\x0a(?P<version>4\\.[-_~.+\\w]+)\\0"'
+rules:
+  r1:
+    request:
+      cache: true
+      content: '{{GenericLines}}'
+    expression: re.bmatches(response.raw)
+    output:
+      result: re.bsubmatch(response.raw)
+      osname: |
+        re.contains("bionic") ? "Linux" : ""
+      version: result["version"]
+expression: r1()
+detail:
+  fingerprint:
+    infos:
+      - type: system_bin
+        name: mysql
+        version: '{{version}}'
+      - type: operating_system
+        name: '{{osname}}'
+```
+
+<!-- tabs:end -->

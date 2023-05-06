@@ -8,6 +8,9 @@
   - [**贡献POC**](tutorial/contribute.md)
   - [**有奖征文**](scenario/intro.md)
   - [**提交反馈**](tutorial/feedback.md)
+  - **微信社群**
+    - **xray核心群**
+      - [**京东卡兑换指南**](tutorial/core_jd.md)
 - 配置文件
   - [**概述**](configration/README.md)
   - [**并发配置**](configration/parallel.md)
