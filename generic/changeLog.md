@@ -1,6 +1,40 @@
 # XRAY Changelog <!-- {docsify-ignore-all} -->
 国内用户可以从 https://stack.chaitin.com/tool/detail?id=1 进行下载，速度更快
 
+## 1.9.10(2023-5-15)
+
+### 版本介绍
+
+该版本为 泛微Ecology信息泄露&前台任意用户登陆漏洞 注入漏洞 的应急版本，相较上个版本，除了添加了一个POC外，未改动其他内容。
+
+### 更新内容
+
+想要检测该漏洞的师傅，可以使用
+
+`./xray ws --poc poc-yaml-ecology-ofslogin-aul --url http://example.com`
+
+进行检测。
+
+相关参考链接：[CT stack](https://stack.chaitin.com/techblog/detail?id=90)
+
+## 1.9.9(2023-5-11)
+
+### 版本介绍
+
+该版本为 宏景人力系统 SQL注入漏洞(CNVD-2023-08743) 的应急版本，相较上个版本：
+- 添加了一个POC
+- 优化了subdomain的参数，使参数缩写与webscan保持一致
+
+### 更新内容
+
+想要检测该漏洞的师傅，可以使用
+
+`./xray ws --poc poc-yaml-hjsoft-hcm-codesettree-serlvet-categories-sqli --url http://example.com`
+
+进行检测。
+
+相关参考链接：[CT stack](https://stack.chaitin.com/techblog/detail?id=89)
+
 ## 1.9.8(2023-4-21)
 
 ### 版本介绍
