@@ -1,2 +1,2 @@
-- [xray 更新日志](/generic/changeLog.md)
-- [使用指南](/tutorial/introduce)
+- [xpoc使用指南](/xpoc/QuickStart.md)
+- [xray使用指南](/tutorial/introduce)
