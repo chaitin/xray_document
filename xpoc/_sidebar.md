@@ -7,4 +7,4 @@
   - [**自定义命令参数（flag）**](/xpoc/config/flag.md)
   - [**插件（plugin）**](/xpoc/config/plugin.md)
   - [**模块（module）**](/xpoc/config/module.md)
-- [**xpoc Change Log**](/generic/changeLog.md)
+- [**xpoc Change Log**](/xpoc/changeLog.md)
