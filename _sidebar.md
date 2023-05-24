@@ -4,13 +4,6 @@
   - [**代理模式进行扫描**](tutorial/webscan_proxy.md)
   - [**基础爬虫模式进行扫描**](tutorial/webscan_basic_crawler.md)
   - [**服务扫描**](tutorial/service_scan.md)
-- 贡献
-  - [**贡献POC**](tutorial/contribute.md)
-  - [**有奖征文**](scenario/intro.md)
-  - [**提交反馈**](tutorial/feedback.md)
-  - **微信社群**
-    - **xray核心群**
-      - [**京东卡兑换指南**](tutorial/core_jd.md)
 - 配置文件
   - [**概述**](configration/README.md)
   - [**并发配置**](configration/parallel.md)
@@ -38,3 +31,10 @@
 - [**技术分享**](share/share.md)
 - [**版本对比**](generic/compare.md)
 - [**xray Change Log**](./generic/changeLog.md)
+- 贡献
+  - [**贡献POC**](tutorial/contribute.md)
+  - [**有奖征文**](scenario/intro.md)
+  - [**提交反馈**](tutorial/feedback.md)
+  - **微信社群**
+    - **xray核心群**
+      - [**京东卡兑换指南**](tutorial/core_jd.md)

@@ -25,12 +25,14 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 #### ** MacOS **
 
 + `darwin_amd64` MacOS
++ `darwin_arm64` MacOS
 
 支持的系统版本为大于等于 10.10
 
 #### ** Linux **
 
 + `linux_amd64` Linux x64
++ `linux_arm64` Linux x64
 + `linux_386` Linux x86
 
 要求内核版本大于等于 2.6.23。不支持 CentOS 5, 因为内核太旧了 （2.6.18)。
@@ -54,7 +56,7 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 
 ![](../assets/tutorial/windows_term.jpg)
 
-使用桌面左下方的的搜索框，输入 `PowerShell`，点击 `Windows PowerShell`，进入命令终端。
+使用桌面左下方的搜索框，输入 `PowerShell`，点击 `Windows PowerShell`，进入命令终端。
 
 然后 `cd` 到下载目录，运行 `.\xray_windows_amd64.exe version` 即可查看 xray 的版本号。
 
