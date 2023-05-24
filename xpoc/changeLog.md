@@ -21,4 +21,4 @@
 
 ### 2. yaml插件能力更新
 
-1. 新增get404Path函数，详情请见[函数介绍](guide/poc/example/http/get404Path.md)
+1. 新增get404Path函数，详情请见[函数介绍](guide/poc/example/http/get404path.md)
