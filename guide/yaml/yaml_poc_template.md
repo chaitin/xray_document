@@ -1024,88 +1024,88 @@ detail:
 - `multipart/form-data; boundary=---------------------------16314487820932200903769468567`中的boundary应随机化
 - 在上传的文件不能删除的情况下，可以选择继续上传一个同名空文件（请确保上传后的文件名称不被重命名），将原来的文件内容进行覆盖。
 - 但常规情况下，在上传php，jsp文件时，可以使用一些函数来将上传的文件删除，示例如下：
-```yaml
-name: poc-yaml-test
-manual: true
-transport: http
-set:
-  r1: randomLowercase(20)
-  r2: randomLowercase(20)
-  rboundary: randomLowercase(8)
-rules:
-  r0:
-    request:
-      cache: true
-      method: POST
-      path: /test
-      headers:
-        Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{rboundary}}
-      body: "\
-        ------WebKitFormBoundary{{rboundary}}\r\n\
-        Content-Disposition: form-data; name=\"file-upload\"; filename=\"{{r1}}.php\"\r\n\
-        Content-Type: application/octet-stream\r\n\
-        \r\n\
-        <?php echo \"{{r2}}\"; unlink(__FILE__); ?>\r\n\
-        ------WebKitFormBoundary{{rboundary}}--\r\n\
-        "
-      follow_redirects: false
-    expression: response.status == 200 && response.body_string.contains(r1)
-    output:
-      search: '"(?P<tmp>.+?)".bsubmatch(response.body)'
-      tmp: search["tmp"]
-  r1:
-    request:
-      cache: true
-      method: GET
-      path: /test/{{tmp}}/{{r1}}.php
-      follow_redirects: false
-    expression: response.status == 200 && response.body_string.contains(r2)
-expression: r0() && r1()
-detail:
-  author: test
-  links:
-    - https://test.com
-```
-```yaml
-name: poc-yaml-wanhuoa-upload-rce
-manual: true
-transport: http
-set:
-  rfilename: randomLowercase(4)
-  s1: randomInt(40000, 44800)
-  s2: randomInt(40000, 44800)
-  rboundary: randomLowercase(8)
-rules:
-  r1:
-    request:
-      method: POST
-      path: /test
-      headers:
-        Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{rboundary}}
-      body: "\
-        ------WebKitFormBoundary{{rboundary}}\r\n\
-        Content-Disposition: form-data; name=\"file\"; filename=\"{{rfilename}}.jsp\"\r\n\
-        Content-Type: application/octet-stream\r\n\
-        \r\n\
-        <%out.print({{s1}} * {{s2}});new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\r\n\
-        ------WebKitFormBoundary{{rboundary}}--\r\n\
-        "
-    expression: response.status == 200 && response.body_string.contains("success")
-    output:
-      search: |
-        "\"data\":\"(?P<filename>\\d+).jsp\"".bsubmatch(response.body)
-      uploadfilename: search["filename"]
-  r2:
-    request:
-      method: GET
-      path: /test/{{uploadfilename}}.jsp
-    expression: response.status == 200 && response.body_string.contains(string(s1 * s2))
-expression: r1() && r2()
-detail:
-  author: test
-  links:
-    - https://test.com
-```
+    ```yaml
+    name: poc-yaml-test
+    manual: true
+    transport: http
+    set:
+      r1: randomLowercase(20)
+      r2: randomLowercase(20)
+      rboundary: randomLowercase(8)
+    rules:
+      r0:
+        request:
+          cache: true
+          method: POST
+          path: /test
+          headers:
+            Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{rboundary}}
+          body: "\
+            ------WebKitFormBoundary{{rboundary}}\r\n\
+            Content-Disposition: form-data; name=\"file-upload\"; filename=\"{{r1}}.php\"\r\n\
+            Content-Type: application/octet-stream\r\n\
+            \r\n\
+            <?php echo \"{{r2}}\"; unlink(__FILE__); ?>\r\n\
+            ------WebKitFormBoundary{{rboundary}}--\r\n\
+            "
+          follow_redirects: false
+        expression: response.status == 200 && response.body_string.contains(r1)
+        output:
+          search: '"(?P<tmp>.+?)".bsubmatch(response.body)'
+          tmp: search["tmp"]
+      r1:
+        request:
+          cache: true
+          method: GET
+          path: /test/{{tmp}}/{{r1}}.php
+          follow_redirects: false
+        expression: response.status == 200 && response.body_string.contains(r2)
+    expression: r0() && r1()
+    detail:
+      author: test
+      links:
+        - https://test.com
+    ```
+    ```yaml
+    name: poc-yaml-wanhuoa-upload-rce
+    manual: true
+    transport: http
+    set:
+      rfilename: randomLowercase(4)
+      s1: randomInt(40000, 44800)
+      s2: randomInt(40000, 44800)
+      rboundary: randomLowercase(8)
+    rules:
+      r1:
+        request:
+          method: POST
+          path: /test
+          headers:
+            Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{rboundary}}
+          body: "\
+            ------WebKitFormBoundary{{rboundary}}\r\n\
+            Content-Disposition: form-data; name=\"file\"; filename=\"{{rfilename}}.jsp\"\r\n\
+            Content-Type: application/octet-stream\r\n\
+            \r\n\
+            <%out.print({{s1}} * {{s2}});new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\r\n\
+            ------WebKitFormBoundary{{rboundary}}--\r\n\
+            "
+        expression: response.status == 200 && response.body_string.contains("success")
+        output:
+          search: |
+            "\"data\":\"(?P<filename>\\d+).jsp\"".bsubmatch(response.body)
+          uploadfilename: search["filename"]
+      r2:
+        request:
+          method: GET
+          path: /test/{{uploadfilename}}.jsp
+        expression: response.status == 200 && response.body_string.contains(string(s1 * s2))
+    expression: r1() && r2()
+    detail:
+      author: test
+      links:
+        - https://test.com
+    ```
 #### 账号/密码修改
 此类漏洞建议使用版本匹配的方式，或者匹配其他特征的方式侧面验证漏洞的存在，不要直接执行删除请求，以防对测试目标造成损害。
 ### 特殊漏洞检测
@@ -1136,19 +1136,18 @@ name: poc-yaml-test
 manual: true
 transport: http
 set:
-  rs: randomLowercase(20)
+    rs: randomLowercase(20)
 rules:
-  r0:
-    request:
-      method: GET
-      path: /?sql=select UPPER('{{rs}}')
-    expression:
-      response.body_string.contains(upper(rs))
+    r0:
+      request:
+        method: GET
+        path: /?sql=select UPPER('{{rs}}')
+      expression: response.body_string.contains(upper(rs))
 expression: r0()
 detail:
-  author: test
-  links:
-    - https://www.test.com
+    author: test
+    links:
+      - https://www.test.com
 ```
 ## TCP
 ### 常规服务漏洞
