@@ -321,7 +321,7 @@ detail:
     infos:
       - id: "长亭指纹库 id"
         name: "SSH"
-        version: {{version}}
+        version: '{{version}}'
         type: "system_bin"
         confidence: 70
     host_info:
