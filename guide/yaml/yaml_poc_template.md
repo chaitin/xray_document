@@ -804,7 +804,7 @@ rules:
       cache: true
       method: GET
       path: /user/test.php?id=1%27)%20AND%20(SELECT(SELECT(SLEEP(0))))%23
-    expression: 'true'
+    expression: response.status == 200
     output:
       r0latency: response.latency
   r1:
