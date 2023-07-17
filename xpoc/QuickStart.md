@@ -19,7 +19,7 @@ xpoc 跨平台支持，请下载时选择需要的版本下载。
 
 1. 拉取所有云端POC并扫描指定目标
 
-    - `./xpoc -t https://example.com -html result.html`
+    - `./xpoc -t https://example.com -o result.html`
 
 2. 查看所有云端的POC
 
