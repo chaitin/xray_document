@@ -12,4 +12,6 @@
 [//]: # (  - [**插件（plugin）**]&#40;/xpoc/config/plugin.md&#41;)
 
 [//]: # (  - [**模块（module）**]&#40;/xpoc/config/module.md&#41;)
+- 通用配置
+  - [**如何部署xray反连平台**](/scenario/reverse.md)
 - [**xpoc Change Log**](/xpoc/changeLog.md)
