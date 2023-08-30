@@ -185,11 +185,14 @@ xray 支持所有 CEL 文档中的函数，同时还新增了一些函数支持�
 
 ## 加密函数
 
-| 函数名       | 函数原型                                                        | 说明                                   | 适用版本         | 详情                                            |
-|-----------|-------------------------------------------------------------|--------------------------------------|--------------|-----------------------------------------------|
-| `md5`     | `func md5(v1 string/bytes) string`                          | 字符串的 md5                             | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/md5.md)     |
-| `sha`     | `func sha(v1 string/bytes, s1 string)string`                | 该函数可以将指定字符串或 bytes 进行 sha 系列计算。      | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/sha.md)     |
-| `hmacSha` | `func hmacSha(v1 string/bytes, s1 string, s2 string)string` | 该函数可以将指定字符串或 bytes 进行 hmac_sha 系列计算。 | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/hmacSha.md) |
+| 函数名                  | 函数原型                                                                 | 说明                                   | 适用版本         | 详情                                                |
+|----------------------|----------------------------------------------------------------------|--------------------------------------|--------------|---------------------------------------------------|
+| `md5`                | `func md5(v1 string/bytes) string`                                   | 字符串的 md5                             | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/md5.md)         |
+| `sha`                | `func sha(v1 string/bytes, s1 string)string`                         | 该函数可以将指定字符串或 bytes 进行 sha 系列计算。      | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/sha.md)         |
+| `hmacSha`            | `func hmacSha(v1 string/bytes, s1 string, s2 string)string`          | 该函数可以将指定字符串或 bytes 进行 hmac_sha 系列计算。 | xray ≥ 1.8.4 | [🔎](guide/poc/example/encryption/hmacSha.md)     |
+| `rsaEncryptPKCS1v15` | `func rsaEncryptPKCS1v15(b1 bytes, k1 string)bytes`                  | 该函数可以将指定数据按照PKCS1v15的填充模式进行RSA加密运算   | xpoc ≥ 0.0.8 | [🔎](guide/poc/example/encryption/rsaPKCS1v15.md) |
+| `rsaDecryptPKCS1v15` | `func rsaDecryptPKCS1v15(b1 bytes, k1 string)bytes`                  | 该函数可以将指定数据按照PKCS1v15的填充模式进行RSA解密运算   | xpoc ≥ 0.0.8 | [🔎](guide/poc/example/encryption/rsaPKCS1v15.md) |
+| `aesDecrypt`         | `func aesDecrypt(d1 bytes/string, k1 bytes/string, m1 string)string` | 该函数可以对aes加密的数据进行解密                   | xpoc ≥ 0.0.8 | [🔎](guide/poc/example/encryption/aes.md)         |
 
 ## 随机值
 
@@ -244,3 +247,4 @@ xray 支持所有 CEL 文档中的函数，同时还新增了一些函数支持�
 | `in`             | `string in map`                             | map 中是否包含某个 key                                         | xray ≥ 1.8.4  |                                                 |
 | `getIconContent` | `func (r1 response) getIconContent() bytes` | 获取response中的icon的字节流数据，如果只存储了icon的地址，则会自动访问该icon，并返回字节流 | xray ≥ 1.9.3  | [🔎](guide/poc/example/other/getIconContent.md) |
 | `get404Path`     | `func get404Path() string`                  | 获取一个长度为8的随机字符串，当作404页面的路径,并保证在一次扫描中，同一个目标将只有一个404path   | xpoc >= 0.0.1 | [🔎](guide/poc/example/http/get404path.md)      |
+| `zipSlip`        | `func zipSlip(s1 string, b1 bytes) bytes`   | 该函数可以自定义生成一个zip文件                                       | xpoc >= 0.0.8 | [🔎](guide/poc/example/other/zipSlip.md)        |
