@@ -39,4 +39,6 @@
 
   - [**YAML插件的参数类型与函数**](/guide/yaml/yaml_type_func.md)
   - [**Q & A**](/guide/course/phaseV.md)
-- [**贡献POC**](/guide/contribute.md)
+- **提交POC**
+  - [**提交流程**](/guide/contribute.md)
+  - [**奖励措施**](/guide/reward.md)

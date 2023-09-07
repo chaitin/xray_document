@@ -3,6 +3,8 @@
 
 [xray使用指南](/tutorial/introduce)
 [xpoc使用指南](/xpoc/QuickStart.md)
+
+[//]: # ([xmap使用指南]&#40;/xmap/QuickStart.md&#41;)
 [开发者指南](/guide/README.md)
 [高级版/企业版](https://xray.cool/compare/)
 
