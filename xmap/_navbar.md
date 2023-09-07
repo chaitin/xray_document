@@ -1,4 +1,3 @@
+- [xray使用指南](/tutorial/prepare.md)
 - [xpoc使用指南](/xpoc/QuickStart.md)
-
-[//]: # (- [xmap使用指南]&#40;/xmap/QuickStart.md&#41;)
 - [开发者指南](/guide/QuickStart.md)
