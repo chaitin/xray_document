@@ -181,7 +181,7 @@ xray 支持所有 CEL 文档中的函数，同时还新增了一些函数支持�
 | `htmlEscape`   | `func htmlEscape(string/bytes, string, bool) string` | 将字符串或 bytes 进行 htmlEscape 编码，支持 named/numeric/hex 模式，支持全/非全字符编码                    | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/htmlEscape.md)   |
 | `htmlUnescape` | `func htmlUnescape(string/bytes) string`             | 将字符串或 bytes 进行 htmlEscape 解码，支持 named/numeric/hex 模式，支持全/非全字符编码                    | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/htmlUnescape.md) |
 | `hex`          | `func hex(string/bytes) string`                      | 将字符串或 bytes 进行 hex 编码                                                              | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/hex.md)          |
-| `hexDecode`    | `func hexDecode(string/bytes) string`                | 将字符串或 bytes 进行 hex 解码                                                              | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/hexDecode.md)    |
+| `hexDecode`    | `func hexDecode(string/bytes) bytes`                 | 将字符串或 bytes 进行 hex 解码                                                              | xray ≥ 1.9.4 | [🔎](guide/poc/example/encode/hexDecode.md)    |
 
 ## 加密函数
 

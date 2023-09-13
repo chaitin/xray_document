@@ -4,8 +4,8 @@
 
 ## 函数原型
 
-- `func hexDecode(s1 string) string`
-- `func hexDecode(b1 bytes) string`
+- `func hexDecode(s1 string) bytes`
+- `func hexDecode(b1 bytes) bytes`
 
 ### 参数介绍
 
