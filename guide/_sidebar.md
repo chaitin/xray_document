@@ -28,8 +28,21 @@
 - **高质量POC规范**
 
   - [**简述**](/guide/hiq/summary.md)
-  - [**脚本通用部分**](/guide/hiq/about_common_part.md)
-  - [**漏洞检测部分**](/guide/hiq/about_vulns.md)
+  - **脚本通用部分**
+    - [set（变量）](/guide/hiq/set.md)
+    - [payloads（optional）](/guide/hiq/payloads.md)
+    - [rules（漏洞规则部分）](/guide/hiq/rules.md)
+    - [detail（信息部分）](/guide/hiq/details.md)
+  - **漏洞检测部分**
+    - [未授权访问](/guide/hiq/unauth.md)
+    - [目录穿越/文件读取](/guide/hiq/path_traversal.md)
+    - [远程命令执行](/guide/hiq/remote_command_execution.md)
+    - [远程代码执行](/guide/hiq/remote_code_execution.md)
+    - [文件上传](/guide/hiq/file_upload.md)
+    - [SQL注入](/guide/hiq/sql_injection.md)
+    - [SSRF](/guide/hiq/ssrf.md)
+    - [Redirect](/guide/hiq/redirect.md)
+    - [XSS](/guide/hiq/xss.md)
   - [**一些常见的问题**](/guide/hiq/question_answer.md)
 
 [//]: # (todo: - [**高质量指纹规范**]&#40;&#41;)
