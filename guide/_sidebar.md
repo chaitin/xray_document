@@ -7,11 +7,12 @@
   - [**YAML格式介绍**](/guide/yaml/yaml_format.md)
   - [**YAML插件的基本构成**](/guide/yaml/yaml_script_v2.md)
   - [**YAML插件的运行逻辑**](/guide/yaml/yaml_run_logic.md)
-- **高级用法**
+- **参数详解**
 
-  - [**自定义变量 - set**](/guide/skill/set.md)
-  - [**全局变量载荷 - payload**](/guide/skill/payload.md)
-  - [**扫描路径 - path**](/guide/skill/path.md)
+  - [**自定义变量 - set**](/guide/hiq/set.md)
+  - [**全局变量载荷 - payload**](/guide/hiq/payloads.md)
+  - [**漏洞规则部分 - rules**](/guide/hiq/rules.md)
+  - [**信息部分 - detail**](/guide/hiq/details.md)
   - [**反连平台 - reverse**](/guide/skill/reverse.md)
   - [**转义的各类问题**](/guide/skill/escape.md)
 
@@ -28,11 +29,6 @@
 - **高质量POC规范**
 
   - [**简述**](/guide/hiq/summary.md)
-  - **脚本通用部分**
-    - [set（变量）](/guide/hiq/set.md)
-    - [payloads（optional）](/guide/hiq/payloads.md)
-    - [rules（漏洞规则部分）](/guide/hiq/rules.md)
-    - [detail（信息部分）](/guide/hiq/details.md)
   - **漏洞检测部分**
     - [未授权访问](/guide/hiq/unauth.md)
     - [目录穿越/文件读取](/guide/hiq/path_traversal.md)
