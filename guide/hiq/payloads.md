@@ -1,4 +1,4 @@
-# payloads（optional）
+# 全局变量载荷 - payload
 
 payloads格式较为简单，一般来说能够通过lint检查就是一个正常的payloads，这里不做过多说明。但是对于该如何去使用payloads一直是一个头疼的问题，这里举一个简单的例子进行说明
 
