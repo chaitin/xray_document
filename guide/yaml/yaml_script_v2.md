@@ -310,57 +310,27 @@ rules:
 
 该字段用于定义一些和脚本相关的信息。
 
-```yaml
-detail:
-  author: name(link)
-  links:
-    - http://example.com
-  warning: "警告信息"
-  # 指纹信息
-  fingerprint:
-    infos:
-      - id: "长亭指纹库 id"
-        name: "SSH"
-        version: '{{version}}'
-        type: "system_bin"
-        confidence: 70
-    host_info:
-      hostname: "test"
-  # 漏洞信息
-  vulnerability:
-    id: "长亭漏洞库 id"
-    match: "证明漏洞存在的信息"
-    # 其它字段
-    cve: "CVE-2020-1234"
-  # 其它未明确定义的字段
-  summary: "test"
-```
-
 目前主要定义了一下几个部分：
 
-**注**：其中支持变量渲染，形如 `{{variable}}`, 其中变量为 set 或者 rule output 中定义的变量
+**注**：其中支持变量渲染，形如 `{{version}}`, 其中变量为 set 或者 rule output 中定义的变量
 
-- `author: string` 作者
-- `links: []string` 相关链接
-- `warning: string` 警告信息
-- `fingerprint` 指纹信息
-    - `infos: []Info` 指纹信息
-        - `id: string` 长亭指纹库 ID
-        - `name: string` 名称
-        - `version: string` 版本号
-        - `type: string` 指纹类型，有以下可选值： `operating_system`, `hardware`, `system_bin`, `web_application`, `dependency`
-        - `confidence: int` 取值范围（1-100）
-    - `host_info` 主机信息
-        - `hostname: string` 主机名
-- `vulnerability` 漏洞信息
-    - `id: string` 长亭漏洞库 ID
-    - `match: string` 证明漏洞存在的一些信息
-    - 额外字段
-- 额外字段
-
-warning信息是在这个poc可能会产生某些问题的情况下，对使用者做出提示的字段，例如创建了一个临时文件无法删除，创建了一个账户等
-
-
-其中author后面跟的link可以填写自己的博客，github主页等信息，也可以不填写。
-而links则是填写这个poc的来源地址，或者这个漏洞的相关描述等，方便审核人员审核，也方便扫描出该漏洞的师傅去复现，修复漏洞。
-所以在审核的时候，如果链接出现问题，我们也将不会通过。
+```yaml
+detail:
+  author: # 作者（个人主页）
+  links:
+    - # 参考链接
+    - # 可以是多个链接
+  warning: # 一些警告信息，也就是该poc可能会产生的问题，比如产生脏数据，创建了一个临时文件无法删除，创建了一个账户等
+  description: # 对该poc/漏洞的描述
+  fingerprint: # 当该插件为指纹插件时才需要填写，且一般会自动生成
+    id: # 指纹库id，一般自动生成，可以不用填写
+    name: # 通用名称，一般自动生成，可以不用填写
+    version: '{{version}}' # 用来接收指纹插件匹配到的版本信息，一般直接用这样的固定格式即可，会自动将output中匹配到的内容渲染过来
+    cpe: # 输出该指纹对应的产品的cpe，一般自动生成，可以不用填写
+    xxxx: # 一些希望被输出的内容，输出时，xxxx就是字段名称，后面就是输出值
+  vulnerability: # 当该插件为漏洞插件且需要输出一些内容时才需要填写，且一般会自动生成
+    id: # 漏洞库id，一般自动生成，可以不用填写
+    level: # 漏洞危害等级，一般自动根据漏洞信息生成，可以不用填写
+    match: # 一些证明漏洞存在的信息，比如信息泄露泄露的一些敏感数据等
+    xxxx: # 一些希望被输出的内容，输出时，xxxx就是字段名称，后面就是输出值
+```
