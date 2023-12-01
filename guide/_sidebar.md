@@ -13,7 +13,6 @@
   - [**全局变量载荷 - payload**](/guide/hiq/payloads.md)
   - [**漏洞规则部分 - rules**](/guide/hiq/rules.md)
   - [**信息部分 - detail**](/guide/hiq/details.md)
-  - [**反连平台 - reverse**](/guide/skill/reverse.md)
   - [**转义的各类问题**](/guide/skill/escape.md)
 
 [//]: # (todo:  - [**输出 - output**]&#40;/guide/skill/output.md&#41;)

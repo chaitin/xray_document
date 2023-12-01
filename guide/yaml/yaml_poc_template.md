@@ -304,7 +304,7 @@ rules:
         Content-Type: application/x-www-form-urlencoded
       body: |
         id=set /A {{s1}}-{{s2}}
-    expression: response.status == 200 && response.body_string.contains(string(s1 - s2))
+    expression: response.status == 200 && response.body_string.contains(string(s2 - s1))
   r1:
     request:
       cache: true

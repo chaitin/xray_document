@@ -67,12 +67,14 @@ rules:
 			cache: false
 			method: GET
 			path: /xxx?keyword=%27%2B(select(0)from(select(sleep({{randSecond1}})))v)%2B%27/
+            read_timeout: "10"
 		expression: response.latency - undelayedLantency >= randSecond1 * 1000 - 500 && response.status == 200 && response.body.bcontains(b"{\"code\":200")
 	r2:
 		request:
 			cache: false
 			method: GET
 			path: /xxx?keyword=%27%2B(select(0)from(select(sleep({{randSecond2}})))v)%2B%27/
+            read_timeout: "10"
 		expression: response.latency - undelayedLantency >= randSecond2 * 1000 - 500 && response.status == 200 && response.body.bcontains(b"{\"code\":200")
 expression: r0() && r1()
 detail:
@@ -107,6 +109,7 @@ detail:
         - 同时无特殊的情况下，`建议`除了时间差值的比较之外，其他的内容与第一条相同
 - 在第三条关于注入的rule中
     - 这一条的内容与第二条除了时间的取值都相同即可
+- **一定要注意添加read_timeout: "10"，不然扫描器会直接不等响应完就根据默认时间直接结束，同时要注意该漏洞的payload是否会被执行多次，造成等待时间翻倍的情况，如果存在，请自行缩短sleep时长，同时提高read_timeout的值**
 
 ?> 这里强求对页面中的部分内容进行匹配，目的是为了作为目标系统的指纹，消除网络环境的影响，防止一些不相干的系统造成的误报。同时匹配的内容不用过多，体现出目标系统的独特性即可
 
