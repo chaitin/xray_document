@@ -3,7 +3,7 @@
 
 [xray使用指南](/tutorial/introduce)
 [xpoc使用指南](/xpoc/QuickStart.md)
-[开发者指南](/guide/README.md)
+[开发者指南](/guide/QuickStart.md)
 [高级版/企业版](/generic/compare.md)
 
 ![](/assets/00000.png)
