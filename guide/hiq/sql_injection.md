@@ -76,7 +76,7 @@ rules:
 			path: /xxx?keyword=%27%2B(select(0)from(select(sleep({{randSecond2}})))v)%2B%27/
             read_timeout: "10"
 		expression: response.latency - undelayedLantency >= randSecond2 * 1000 - 500 && response.status == 200 && response.body.bcontains(b"{\"code\":200")
-expression: r0() && r1()
+expression: r0() && r1() && r2()
 detail:
 	author: Chaitin
 	links:
