@@ -303,7 +303,7 @@ rules:
       headers:
         Content-Type: application/x-www-form-urlencoded
       body: |
-        id=set /A {{s1}}-{{s2}}
+        id=set /A {{s2}}-{{s1}}
     expression: response.status == 200 && response.body_string.contains(string(s2 - s1))
   r1:
     request:
