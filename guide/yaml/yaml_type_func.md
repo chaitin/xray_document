@@ -58,22 +58,22 @@ response 包含的字段如下:
 
 response 包含的字段如下:
 
-| 变量名                     | 类型                  | 说明                                                 | 适用版本         |
-|-------------------------|---------------------|----------------------------------------------------|--------------|
-| `response.raw`          | `[]byte`            | 原始响应                                               | xray ≥ 1.8.4 |
-| `response.url`          | `urlType`           | 自定义类型 urlType, 请查看下方 urlType 的说明                   | xray ≥ 1.8.4 |
-| `response.status`       | `int`               | 返回包的status code                                    | xray ≥ 1.8.4 |
-| `response.raw_header`   | `[]byte`            | 原始的 header 部分，需要使用字节流相关方法来判断。                      | xray ≥ 1.8.4 |
-| `response.body`         | `[]byte`            | 返回包的Body，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法  | xray ≥ 1.8.4 |
-| `response.body_string`  | `string`            | 返回包的Body，是一个字符串                                    | xray ≥ 1.9.1 |
-| `response.headers`      | `map[string]string` | 返回包的HTTP头，类似 `request.headers`。                    | xray ≥ 1.8.4 |
-| `response.content_type` | `string`            | 返回包的content-type头的值                                | xray ≥ 1.8.4 |
-| `response.latency`      | `int`               | 响应的延迟时间，可以用于 sql 时间盲注的判断，单位毫秒 (ms)                 | xray ≥ 1.8.4 |
-| `response.title`        | `[]byte`            | 返回包的Title，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法 | xray ≥ 1.8.5 |
-| `response.title_string` | `string`            | 返回包的Title，是一个字符串                                   | xray ≥ 1.8.5 |
-| `response.cert`         | `CERTType`          | 自定义类型CERTType, 请查看下方 CERTType 的说明                  | xpoc ≥ 0.0.8 |
-| `response.raw_cert`     | `[]byte`            | 返回包的证书的原始部分，是一个字节流（bytes）                          | xpoc ≥ 0.0.8 |
-| `response.icon_url`     | `string`            | 返回包中尝试提取的icon的地址，是一个字符串                            | xpoc ≥ 0.0.8 |
+| 变量名                     | 类型                  | 说明                                                           | 适用版本         |
+|-------------------------|---------------------|--------------------------------------------------------------|--------------|
+| `response.raw`          | `[]byte`            | 原始响应                                                         | xray ≥ 1.8.4 |
+| `response.url`          | `urlType`           | 自定义类型 urlType, 请查看下方 urlType 的说明                             | xray ≥ 1.8.4 |
+| `response.status`       | `int`               | 返回包的status code                                              | xray ≥ 1.8.4 |
+| `response.raw_header`   | `[]byte`            | 原始的 header 部分，需要使用字节流相关方法来判断。                                | xray ≥ 1.8.4 |
+| `response.body`         | `[]byte`            | 返回包的Body，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法            | xray ≥ 1.8.4 |
+| `response.body_string`  | `string`            | 返回包的Body，是一个字符串                                              | xray ≥ 1.9.1 |
+| `response.headers`      | `map[string]string` | 返回包的HTTP头，类似 `request.headers`。                              | xray ≥ 1.8.4 |
+| `response.content_type` | `string`            | 返回包的content-type头的值                                          | xray ≥ 1.8.4 |
+| `response.latency`      | `int`               | 响应的延迟时间，可以用于 sql 时间盲注的判断，单位毫秒 (ms)                           | xray ≥ 1.8.4 |
+| `response.title`        | `[]byte`            | 返回包的Title，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法           | xray ≥ 1.8.5 |
+| `response.title_string` | `string`            | 返回包的Title，是一个字符串                                             | xray ≥ 1.8.5 |
+| `response.cert`         | `CERTType`          | 自定义类型CERTType, 请查看下方 CERTType 的说明                            | xpoc ≥ 0.0.8 |
+| `response.raw_cert`     | `[]byte`            | 返回包的证书的原始部分，是一个字节流（bytes）                                    | xpoc ≥ 0.0.8 |
+| `response.icon_url`     | `string`            | 返回包中尝试提取的icon的地址，是一个字符串，为DER（Distinguished Encoding Rules）格式 | xpoc ≥ 0.0.8 |
 
 
 ### 基本类型
